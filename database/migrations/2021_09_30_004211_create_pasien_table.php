@@ -21,7 +21,6 @@ class CreatePasienTable extends Migration
             $table->string("email");
             $table->text("alamat");
             $table->longText("riwayat_penyakit");
-            $table->boolean("status");
             $table->timestamps();
         });
     }

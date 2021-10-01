@@ -14,7 +14,6 @@
 <div class="card">
     <div class="card-body">
         <div class="mb-3">
-            <a href="#" class="btn btn-primary px-3">Detail</a>
             <a href="#" class="btn btn-success px-3">Tambah</a>
             <a href="#" class="btn btn-warning px-3">Print</a>
         </div>

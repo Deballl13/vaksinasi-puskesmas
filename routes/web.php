@@ -21,6 +21,6 @@ Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran');
-Route::get('/pendaftaran/detail', [PendaftaranController::class, 'detail'])->name('pendaftaran.detail');
+Route::get('/pendaftaran/d', [PendaftaranController::class, 'detail'])->name('pendaftaran.detail');
 Route::get('/vaksinasi', [VaksinasiController::class, 'index'])->name('vaksinasi');
 Route::get('/vaksin', [VaksinasiController::class, 'vaksin'])->name('vaksin');

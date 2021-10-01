@@ -19,6 +19,7 @@ class CreateVaksinasiTable extends Migration
             $table->string("kode_jenis_vaksin");
             $table->date("tanggal_vaksin");
             $table->integer("vaksin_ke");
+            $table->integer("status");
             $table->timestamps();
 
             $table->foreign("nik")->references("nik")->on("pasien")->onUpdate("cascade")->onDelete("cascade");

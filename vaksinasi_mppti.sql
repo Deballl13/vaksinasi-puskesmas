@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2021 at 05:52 AM
+-- Generation Time: Oct 01, 2021 at 07:14 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -70,14 +70,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2021_09_30_004211_create_pasien_table', 1),
-(6, '2021_09_30_004222_create_vaksin_table', 1),
-(7, '2021_09_30_004235_create_detail_vaksin_table', 1),
-(8, '2021_09_30_035258_create_vaksinasi_table', 1);
+(9, '2014_10_12_000000_create_users_table', 1),
+(10, '2014_10_12_100000_create_password_resets_table', 1),
+(11, '2019_08_19_000000_create_failed_jobs_table', 1),
+(12, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(13, '2021_09_30_004211_create_pasien_table', 1),
+(14, '2021_09_30_004222_create_vaksin_table', 1),
+(15, '2021_09_30_004235_create_detail_vaksin_table', 1),
+(16, '2021_09_30_035258_create_vaksinasi_table', 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,6 @@ CREATE TABLE `pasien` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `riwayat_penyakit` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -151,7 +150,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Kelompok 2', 'kelompok2', 'kelompok2mppti@gmail.com', NULL, '$2y$10$Dp1Jht5UXQHhV0trMwD2ZOIFjejEQbRfCPnAYa15NWgvJZ9OaeMXG', NULL, '2021-09-30 20:12:53', '2021-09-30 20:12:53');
+(1, 'Kelompok 2', 'kelompok2', 'kelompok2mppti@gmail.com', NULL, '$2y$10$KAHOY/c11WIb.g2uzXsVL.w3UTap.fSisdwErM7xPyNrhHW3iHjwy', NULL, '2021-10-01 10:10:42', '2021-10-01 10:10:42');
 
 -- --------------------------------------------------------
 
@@ -179,6 +178,7 @@ CREATE TABLE `vaksinasi` (
   `kode_jenis_vaksin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_vaksin` date NOT NULL,
   `vaksin_ke` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -269,7 +269,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

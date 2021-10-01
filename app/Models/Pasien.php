@@ -9,7 +9,7 @@ class Pasien extends Model
 {
     use HasFactory;
     protected $table = "pasien";
-    protected $fillable = ["nik", "nama_pasien", "tgl_lahir", "alamat", "email", "riwayat_penyakit", "status"];
+    protected $fillable = ["nik", "nama_pasien", "tgl_lahir", "no_hp", "email", "alamat", "riwayat_penyakit"];
 
     public function vaksinasi(){
         return $this->hasMany(Vaksinasi::class);
