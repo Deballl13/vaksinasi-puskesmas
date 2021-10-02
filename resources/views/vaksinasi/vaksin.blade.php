@@ -14,8 +14,8 @@
 <div class="card">
     <div class="card-body">
         <div class="mb-3">
-            <a href="#" class="btn btn-primary px-3">Detail</a>
-            <a href="#" class="btn btn-success px-3">Tambah</a>
+            <a href="{{ route('vaksin.detail') }}" class="btn btn-primary px-3">Detail</a>
+            <a href="{{ route('vaksin.tambah') }}" class="btn btn-success px-3">Tambah</a>
         </div>
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
@@ -64,6 +64,6 @@
             'bFilter': false,
             'lengthChange': false
         });
-    } );
+    });
 </script>
 @endsection

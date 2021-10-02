@@ -14,7 +14,7 @@
 <div class="card">
     <div class="card-body">
         <div class="mb-3">
-            <a href="#" class="btn btn-success px-3">Tambah</a>
+            <a href="{{ route('vaksinasi.tambah') }}" class="btn btn-success px-3">Tambah</a>
             <a href="#" class="btn btn-warning px-3">Print</a>
         </div>
         <table id="example" class="table table-striped" style="width:100%">
@@ -36,7 +36,7 @@
                     <td>Perempuan</td>
                     <td>imma@gmail.com</td>
                     <td class="text-center">
-                        <a href="#" class="btn btn-primary">Detail</a>
+                        <a href="{{ route('vaksinasi.detail') }}" class="btn btn-primary">Detail</a>
                         <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
@@ -47,7 +47,7 @@
                     <td>Laki-laki</td>
                     <td>ari@gmail.com</td>
                     <td class="text-center">
-                        <a href="#" class="btn btn-primary">Detail</a>
+                        <a href="{{ route('vaksinasi.detail') }}" class="btn btn-primary">Detail</a>
                         <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>

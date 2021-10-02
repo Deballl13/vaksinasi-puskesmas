@@ -23,4 +23,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran');
 Route::get('/pendaftaran/d', [PendaftaranController::class, 'detail'])->name('pendaftaran.detail');
 Route::get('/vaksinasi', [VaksinasiController::class, 'index'])->name('vaksinasi');
+Route::get('/vaksinasi/d', [VaksinasiController::class, 'detail'])->name('vaksinasi.detail');
+Route::get('/vaksinasi/e', [VaksinasiController::class, 'edit'])->name('vaksinasi.edit');
+Route::get('/vaksinasi/t', [VaksinasiController::class, 'tambah'])->name('vaksinasi.tambah');
 Route::get('/vaksin', [VaksinasiController::class, 'vaksin'])->name('vaksin');
+Route::get('/vaksin/d', [VaksinasiController::class, 'detail_vaksin'])->name('vaksin.detail');
+Route::get('/vaksin/t', [VaksinasiController::class, 'tambah_vaksin'])->name('vaksin.tambah');
+
+Route::get('/Pendaftaran-Vaksin', function () {
+    return view('pendaftaran_user.pendaftaran_user');
+});
