@@ -14,7 +14,7 @@ class CreateVaksinTable extends Migration
     public function up()
     {
         Schema::create('vaksin', function (Blueprint $table) {
-            $table->string("kode_jenis")->primary();
+            $table->id();
             $table->string("nama_vaksin");
             $table->integer("stok");
             $table->timestamps();

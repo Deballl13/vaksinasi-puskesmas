@@ -17,8 +17,9 @@ class CreatePasienTable extends Migration
             $table->bigInteger("nik")->primary();
             $table->string("nama_pasien");
             $table->date("tgl_lahir");
+            $table->string("jenis_kelamin");
             $table->string("no_hp");
-            $table->string("email");
+            $table->string("email")->nullable();
             $table->text("alamat");
             $table->longText("riwayat_penyakit");
             $table->timestamps();

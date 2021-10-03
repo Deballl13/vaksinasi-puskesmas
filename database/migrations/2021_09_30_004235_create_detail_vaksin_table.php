@@ -14,14 +14,14 @@ class CreateDetailVaksinTable extends Migration
     public function up()
     {
         Schema::create('detail_vaksin', function (Blueprint $table) {
-            $table->id("id_log");
-            $table->string("kode_jenis");
+            $table->id();
+            $table->unsignedBigInteger("id_vaksin");
             $table->string("sumber_vaksin");
             $table->integer("jumlah");
             $table->date("tanggal");
             $table->timestamps();
 
-            $table->foreign("kode_jenis")->references("kode_jenis")->on("vaksin")->onUpdate("cascade")->onDelete("cascade");
+            $table->foreign("id_vaksin")->references("id")->on("vaksin")->onUpdate("cascade")->onDelete("cascade");
         });
     }
 

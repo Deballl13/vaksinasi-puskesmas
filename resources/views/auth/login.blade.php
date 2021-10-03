@@ -36,6 +36,7 @@
 
                             <div class="form-group row justify-content-center">
                                 <div class="col-md-8 col-sm-8">
+                                    <label for="username" class="form-label">Username</label>
                                     <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Masukkan Username">
 
                                     @error('username')
@@ -46,8 +47,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row justify-content-center">
+                            <div class="form-group row justify-content-center mt-3">
                                 <div class="col-md-8 col-sm-8">
+                                    <label for="password" class="form-label">Password</label>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Masukkan Password">
 
                                     @error('password')

@@ -13,13 +13,13 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-9 col-sm-8 mb-5">
+    <div class="col-md-8 col-sm-10 mb-5">
         <form action="">
             <div class="card">
                 <div class="card-body">
                     <div class="nama">
                         <label>Nama</label>
-                        <input class="form-control form-control-sm mb-3" type="text" name="nama" aria-label="default input example">
+                        <input class="form-control mb-3" type="text" name="nama" aria-label="default input example">
                     </div>
                     <div class="jenis_kelamin mb-3">
                         <label>Jenis Kelamin</label>
@@ -38,20 +38,20 @@
                     </div>
                     <div class="nik">
                         <label>NIK</label>
-                        <input class="form-control form-control-sm mb-3" type="text" name="nik" aria-label="default input example">
+                        <input class="form-control mb-3" type="text" name="nik" aria-label="default input example">
                     </div>
                     <div class="no_hp">
                         <label>No. Hp</label>
-                        <input class="form-control form-control-sm mb-3" type="text" name="no_hp" aria-label="default input example">
+                        <input class="form-control mb-3" type="text" name="no_hp" aria-label="default input example">
                     </div>
                     <div class="email">
                         <label>Email</label>
-                        <input class="form-control form-control-sm mb-3" type="text" name="email" aria-label="default input example">
+                        <input class="form-control mb-3" type="text" name="email" aria-label="default input example">
                     </div>
                     <div class="riwayat">
                         <label>Riwayat Penyakit</label>
                         <div class="mb-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" style="resize: none;"></textarea>
                         </div>
                     </div>
                 </div>

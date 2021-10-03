@@ -13,7 +13,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-9 col-sm-8 mb-5">
+    <div class="col-md-8 col-sm-10 mb-5">
         <div class="card pt-3">
             <div class="card-body">
                 <div class="nama">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-4 mb-auto">
+    <div class="col-md-4 col-sm-2 mb-auto">
         <a href="{{ route('vaksinasi.edit') }}">
             <button class="btn btn-warning">Edit</button>
         </a>

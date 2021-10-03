@@ -9,7 +9,7 @@ class Detail_Vaksin extends Model
 {
     use HasFactory;
     protected $table = "detail_vaksin";
-    protected $fillable = ["kode_jenis", "sumber_vaksin", "jumlah", "tanggal"];
+    protected $fillable = ["id_vaksin", "sumber_vaksin", "jumlah", "tanggal"];
 
     public function vaksinasi(){
         return $this->belongsTo(Vaksinasi::class);

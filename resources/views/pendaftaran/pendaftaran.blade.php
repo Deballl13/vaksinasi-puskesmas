@@ -25,26 +25,18 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($pasien as $p)
                 <tr>
-                    <td class="text-center">1.</td>
-                    <td>12345667891234567</td>
-                    <td>Immalatunil Khaira A.</td>
-                    <td>Perempuan</td>
-                    <td>imma@gmail.com</td>
+                    <td class="text-center">{{$loop->iteration}}</td>
+                    <td>{{$p->nik}}</td>
+                    <td>{{$p->nama_pasien}}</td>
+                    <td>{{$p->jenis_kelamin}}</td>
+                    <td>{{$p->email}}</td>
                     <td class="text-center">
-                        <a href="{{ route('pendaftaran.detail') }}" class="btn btn-primary">Detail</a>
+                        <a href="/pendaftaran/d/{{$p->nik}}" class="btn btn-primary">Detail</a>
                     </td>
                 </tr>
-                <tr>
-                    <td class="text-center">2.</td>
-                    <td>12345667891234567</td>
-                    <td>Untung Jamari</td>
-                    <td>Laki-laki</td>
-                    <td>ari@gmail.com</td>
-                    <td class="text-center">
-                        <a href="{{ route('pendaftaran.detail') }}" class="btn btn-primary">Detail</a>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
