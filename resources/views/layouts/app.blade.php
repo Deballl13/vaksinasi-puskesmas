@@ -84,7 +84,7 @@
             </div>
         </nav>
 
-        <main class="content" id="content">
+        <main class="content mb-5" id="content">
             <div class="container-fluid">
                 @yield('bread_crumb')
                 @yield('content')

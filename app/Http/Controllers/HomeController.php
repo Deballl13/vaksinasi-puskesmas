@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasien;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $pasien = Pasien::join("vaksinasi", "pasien.nik", "=", "vaksinasi.nik")
+                            ->where('vaksinasi.status', 0)
+                            ->count();
+        
+        return view('home', compact('pasien'));
     }
 }

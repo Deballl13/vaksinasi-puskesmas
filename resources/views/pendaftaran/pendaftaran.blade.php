@@ -31,7 +31,7 @@
                     <td>{{$p->nik}}</td>
                     <td>{{$p->nama_pasien}}</td>
                     <td>{{$p->jenis_kelamin}}</td>
-                    <td>{{$p->email}}</td>
+                    <td>{{ ($p->email !== NULL) ? $p->email : '-' }}</td>
                     <td class="text-center">
                         <a href="/pendaftaran/d/{{$p->nik}}" class="btn btn-primary">Detail</a>
                     </td>

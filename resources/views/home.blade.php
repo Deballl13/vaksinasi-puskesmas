@@ -19,7 +19,7 @@
             </div>
 
             <div class="card-body">
-                <h5>30</h5>
+                <h5>{{$pasien}}</h5>
             </div>
         </div>
     </div>

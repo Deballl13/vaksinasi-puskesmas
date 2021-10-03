@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="nik mb-4">
                                         <label for="nik">NIK<sup class="text-danger">*</sup></label>
-                                        <input class="form-control" id="nik" type="text" name="nik" aria-label="default input example">
+                                        <input class="form-control" id="nik" type="text" name="nik" maxlength="16" aria-label="default input example">
                                     </div>
                                     <div class="no_hp mb-4">
                                         <label for="no_hp">No. Hp<sup class="text-danger">*</sup></label>
@@ -111,7 +111,6 @@
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>

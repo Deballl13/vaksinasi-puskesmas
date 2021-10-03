@@ -21,7 +21,7 @@ class CreatePasienTable extends Migration
             $table->string("no_hp");
             $table->string("email")->nullable();
             $table->text("alamat");
-            $table->longText("riwayat_penyakit");
+            $table->longText("riwayat_penyakit")->nullable();
             $table->timestamps();
         });
     }

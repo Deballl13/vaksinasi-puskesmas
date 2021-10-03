@@ -16,25 +16,37 @@
     <div class="col-md-8 col-sm-10">
         <div class="card pt-3">
             <div class="card-body">
-                <div class="nama">
+                <div id="nama">
                     <h5>Nama</h5>
                     <p>{{$detail->nama_pasien}}</p>
                 </div>
-                <div class="nik">
-                    <h5>NIK</h5>
+                <div id="nik">
+                    <h5>Nik</h5>
                     <p>{{$detail->nik}}</p>
                 </div>
-                <div class="no_hp">
+                <div id="tgl_lahir">
+                    <h5>Tanggal lahir</h5>
+                    <p>{{date("d-m-Y", strtotime($detail->tgl_lahir))}}</p>
+                </div>
+                <div id="jenis_kelamin">
+                    <h5>Jenis Kelamin</h5>
+                    <p>{{$detail->jenis_kelamin}}</p>
+                </div>
+                <div id="no_hp">
                     <h5>No. Hp</h5>
                     <p>{{$detail->no_hp}}</p>
                 </div>
-                <div class="email">
+                <div id="email">
                     <h5>Email</h5>
-                    <p>{{$detail->email}}</p>
+                    <p>{{ ($detail->email !== NULL) ? $detail->email : '-' }}</p>
                 </div>
-                <div class="riwayat">
+                <div id="alamat">
+                    <h5>Alamat</h5>
+                    <p>{{$detail->alamat}}</p>
+                </div>
+                <div id="riwayat">
                     <h5>Riwayat Penyakit</h5>
-                    <p>{{$detail->riwayat_penyakit}}</p>
+                    <p>{{ ($detail->riwayat_penyakit !== NULL) ? $detail->riwayat_penyakit : '-'}}</p>
                 </div>
             </div>
         </div>

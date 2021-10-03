@@ -35,6 +35,9 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::get('/vaksin/d', [VaksinasiController::class, 'detail_vaksin'])->name('vaksin.detail');
     Route::get('/vaksin/t', [VaksinasiController::class, 'tambah_vaksin'])->name('vaksin.tambah');
 
+
+    Route::post('/vaksinasi/t/daftar', [PendaftaranController::class, 'store_daftar'])->name("pendaftaran.tambah");
+
 });
 
 
