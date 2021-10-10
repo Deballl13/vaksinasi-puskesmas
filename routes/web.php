@@ -28,7 +28,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran');
     Route::get('/pendaftaran/d/{nik}', [PendaftaranController::class, 'detail'])->name('pendaftaran.detail');
     Route::get('/vaksinasi', [VaksinasiController::class, 'index'])->name('vaksinasi');
-    Route::get('/vaksinasi/d', [VaksinasiController::class, 'detail'])->name('vaksinasi.detail');
+    Route::get('/vaksinasi/d/{nik}', [VaksinasiController::class, 'detail'])->name('vaksinasi.detail');
     Route::get('/vaksinasi/e', [VaksinasiController::class, 'edit'])->name('vaksinasi.edit');
     Route::get('/vaksinasi/t', [VaksinasiController::class, 'tambah'])->name('vaksinasi.tambah');
     Route::get('/vaksin', [VaksinasiController::class, 'vaksin'])->name('vaksin');
@@ -37,8 +37,4 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
 
 
     Route::post('/vaksinasi/t/daftar', [PendaftaranController::class, 'store_daftar'])->name("pendaftaran.tambah");
-
 });
-
-
-

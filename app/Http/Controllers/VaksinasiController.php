@@ -3,17 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pasien;
+use App\Models\Vaksinasi;
+use Illuminate\Support\Str;
+
 
 class VaksinasiController extends Controller
 {
     public function index()
     {
-        return view("vaksinasi.vaksinasi");
+        $vaksinasi = Vaksinasi::join("pasien", "pasien.nik", "=", "vaksinasi.nik")
+            ->where('vaksinasi.status', 3)
+            ->get();
+        return view("vaksinasi.vaksinasi", compact('vaksinasi'));
     }
 
-    public function detail()
+    public function detail($nik)
     {
-        return view("vaksinasi.detail_vaksinasi");
+        $pasien = new Pasien();
+        $pasien->nik = $nik;
+
+        $detail = Pasien::find($pasien->nik);
+        return view("vaksinasi.detail_vaksinasi", compact('detail'));
     }
 
     public function edit()

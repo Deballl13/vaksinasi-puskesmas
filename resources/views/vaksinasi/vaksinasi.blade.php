@@ -29,28 +29,19 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($vaksinasi as $v)
                 <tr>
-                    <td class="text-center">1.</td>
-                    <td>12345667891234567</td>
-                    <td>Immalatunil Khaira A.</td>
-                    <td>Perempuan</td>
-                    <td>imma@gmail.com</td>
+                    <td class="text-center">{{$loop->iteration}}</td>
+                    <td>{{$v->nik}}</td>
+                    <td>{{$v->nama_pasien}}</td>
+                    <td>{{$v->jenis_kelamin}}</td>
+                    <td>{{$v->email}}</td>
                     <td class="text-center">
-                        <a href="{{ route('vaksinasi.detail') }}" class="btn btn-primary">Detail</a>
+                        <a href="/vaksinasi/d/{{$v->nik}}" class="btn btn-primary">Detail</a>
                         <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
-                <tr>
-                    <td class="text-center">2.</td>
-                    <td>12345667891234567</td>
-                    <td>Untung Jamari</td>
-                    <td>Laki-laki</td>
-                    <td>ari@gmail.com</td>
-                    <td class="text-center">
-                        <a href="{{ route('vaksinasi.detail') }}" class="btn btn-primary">Detail</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -61,6 +52,6 @@
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
-    } );
+    });
 </script>
 @endsection

@@ -18,27 +18,27 @@
             <div class="card-body">
                 <div class="nama">
                     <h5>Nama</h5>
-                    <p>Immalatunil Khaira A.</p>
+                    <p>{{$detail->nama_pasien}}</p>
                 </div>
                 <div class="jenis_kelamin">
                     <h5>Jenis Kelamin</h5>
-                    <p>Perempuan</p>
+                    <p>{{$detail->jenis_kelamin}}</p>
                 </div>
                 <div class="nik">
                     <h5>NIK</h5>
-                    <p>12345667891234567</p>
+                    <p>{{$detail->nik}}</p>
                 </div>
                 <div class="no_hp">
                     <h5>No. Hp</h5>
-                    <p>081234456789</p>
+                    <p>{{$detail->no_hp}}</p>
                 </div>
                 <div class="email">
                     <h5>Email</h5>
-                    <p>imma@gmail.com</p>
+                    <p>{{$detail->email}}</p>
                 </div>
                 <div class="riwayat">
                     <h5>Riwayat Penyakit</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat repudiandae id voluptatibus eius, dolores atque consequatur error ullam soluta. Totam est non rem at corrupti sit saepe sed voluptatum reprehenderit!</p>
+                    <p>{{$detail->riwayat_penyakit}}</p>
                 </div>
             </div>
         </div>
