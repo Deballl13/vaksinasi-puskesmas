@@ -34,10 +34,16 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td>{{$v->nik}}</td>
                     <td>{{$v->nama_pasien}}</td>
-                    <td>{{$v->jenis_kelamin}}</td>
+                    <td>
+                        @if($v->jenis_kelamin === 'L')
+                            Laki-laki
+                        @elseif($v->jenis_kelamin === 'P')
+                            Perempuan
+                        @endif
+                    </td>
                     <td>{{$v->email}}</td>
                     <td class="text-center">
-                        <a href="/vaksinasi/d/{{$v->nik}}" class="btn btn-primary">Detail</a>
+                        <a href="{{ route('vaksinasi.detail', ['nik' => $v->nik]) }}" class="btn btn-primary">Detail</a>
                         <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>

@@ -29,12 +29,13 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::get('/pendaftaran/d/{nik}', [PendaftaranController::class, 'detail'])->name('pendaftaran.detail');
     Route::get('/vaksinasi', [VaksinasiController::class, 'index'])->name('vaksinasi');
     Route::get('/vaksinasi/d/{nik}', [VaksinasiController::class, 'detail'])->name('vaksinasi.detail');
-    Route::get('/vaksinasi/e', [VaksinasiController::class, 'edit'])->name('vaksinasi.edit');
+    Route::get('/vaksinasi/e/{nik}', [VaksinasiController::class, 'edit'])->name('vaksinasi.edit');
     Route::get('/vaksinasi/t', [VaksinasiController::class, 'tambah'])->name('vaksinasi.tambah');
     Route::get('/vaksin', [VaksinasiController::class, 'vaksin'])->name('vaksin');
     Route::get('/vaksin/d', [VaksinasiController::class, 'detail_vaksin'])->name('vaksin.detail');
     Route::get('/vaksin/t', [VaksinasiController::class, 'tambah_vaksin'])->name('vaksin.tambah');
 
 
-    Route::post('/vaksinasi/t/daftar', [PendaftaranController::class, 'store_daftar'])->name("pendaftaran.tambah");
+    Route::post('/vaksinasi/t/daftar', [PendaftaranController::class, 'store_daftar'])->name('pendaftaran.tambah');
+    Route::put('/vaksinasi/e/pasien', [VaksinasiController::class, 'update_pasien'])->name('vaksinasi.edit.pasien');
 });

@@ -30,7 +30,13 @@
                 </div>
                 <div id="jenis_kelamin">
                     <h5>Jenis Kelamin</h5>
-                    <p>{{$detail->jenis_kelamin}}</p>
+                    <p>
+                        @if($detail->jenis_kelamin === 'L')
+                            Laki-laki
+                        @elseif($detail->jenis_kelamin === 'P')
+                            Perempuan
+                        @endif
+                    </p>
                 </div>
                 <div id="no_hp">
                     <h5>No. Hp</h5>

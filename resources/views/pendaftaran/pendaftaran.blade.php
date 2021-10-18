@@ -21,6 +21,7 @@
                     <th>Nama Pasien</th>
                     <th>Jenis Kelamin</th>
                     <th>Email</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -30,10 +31,23 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td>{{$p->nik}}</td>
                     <td>{{$p->nama_pasien}}</td>
-                    <td>{{$p->jenis_kelamin}}</td>
+                    <td>
+                        @if($p->jenis_kelamin === 'L')
+                            Laki-laki
+                        @elseif($p->jenis_kelamin === 'P')
+                            Perempuan
+                        @endif
+                    </td>
                     <td>{{ ($p->email !== NULL) ? $p->email : '-' }}</td>
+                    <td>
+                        @if($p->status === 0)
+                            Belum disetujui
+                        @elseif($p->status === 1)
+                            Disetujui
+                        @endif
+                    </td>
                     <td class="text-center">
-                        <a href="/pendaftaran/d/{{$p->nik}}" class="btn btn-primary">Detail</a>
+                        <a href="{{ route('pendaftaran.detail', ['nik' => $p->nik] ) }}" class="btn btn-primary">Detail</a>
                     </td>
                 </tr>
                 @endforeach

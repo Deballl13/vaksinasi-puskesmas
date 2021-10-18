@@ -29,13 +29,13 @@
                     <div class="jenis_kelamin mb-4">
                         <label>Jenis Kelamin<sup class="text-danger">*</sup></label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="Laki-Laki" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="L" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Laki-Laki
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="Perempuan" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="P" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Perempuan
                             </label>

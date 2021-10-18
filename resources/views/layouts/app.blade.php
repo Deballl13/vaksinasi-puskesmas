@@ -53,7 +53,7 @@
                     <a href="{{ route('pendaftaran') }}" class="menu-link nav-link {{ request()->is('pendaftaran') || request()->is('pendaftaran/d/*') ? 'text-primary' : '' }}"><i class="fas fa-users icon"></i>Pendaftaran</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{{ route('vaksinasi') }}" class="menu-link nav-link {{ request()->is('vaksinasi') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/t') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/d') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/e') ? 'text-primary' : '' }}"><i class="fas fa-syringe icon"></i>Data Vaksinasi</a>
+                    <a href="{{ route('vaksinasi') }}" class="menu-link nav-link {{ request()->is('vaksinasi') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/t') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/d/*') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/e/*') ? 'text-primary' : '' }}"><i class="fas fa-syringe icon"></i>Data Vaksinasi</a>
                 </div>
                 <div class="menu-item">
                     <a href="{{ route('vaksin') }}" class="menu-link nav-link {{ request()->is('vaksin') ? 'text-primary' : '' }} {{ request()->is('vaksin/t') ? 'text-primary' : '' }} {{ request()->is('vaksin/d') ? 'text-primary' : '' }}"><i class="fas fa-briefcase-medical icon"></i>Vaksin</a>
