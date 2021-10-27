@@ -20,7 +20,8 @@
                     <th>Nik</th>
                     <th>Nama Pasien</th>
                     <th>Jenis Kelamin</th>
-                    <th>Email</th>
+                    <th>Tanggal Vaksin</th>
+                    <th>Vaksin Ke</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -38,7 +39,8 @@
                             Perempuan
                         @endif
                     </td>
-                    <td>{{ ($p->email !== NULL) ? $p->email : '-' }}</td>
+                    <td class="text-center">{{ date("d-m-Y", strtotime($p->tgl_vaksin)) }}</td>
+                    <td class="text-center">{{ $p->vaksin_ke }}</td>
                     <td>
                         @if($p->status === 0)
                             Belum disetujui
@@ -60,9 +62,7 @@
 @section('script')
 <script>
     $(document).ready(function() {
-        $('#example').DataTable({
-            'bFilter': false
-        });
+        $('#example').DataTable();
     } );
 </script>
 @endsection

@@ -14,23 +14,20 @@ class VaksinasiController extends Controller
         $vaksinasi = Vaksinasi::join("pasien", "pasien.nik", "=", "vaksinasi.nik")
             ->where('vaksinasi.status', 2)
             ->orderByDesc('vaksinasi.tgl_vaksin')
+            ->distinct()
             ->get();
         return view("vaksinasi.vaksinasi", compact('vaksinasi'));
     }
 
     public function detail($nik){
-        $pasien = new Pasien();
-        $pasien->nik = $nik;
-
-        $detail = Pasien::find($pasien->nik);
-        return view("vaksinasi.detail_vaksinasi", compact('detail'));
+        $detail = Pasien::find($nik);
+        $vaksinasi = Vaksinasi::where('nik', $nik)->get();
+        // dd($vaksinasi);
+        return view("vaksinasi.detail_vaksinasi", compact('detail', 'vaksinasi'));
     }
 
     public function edit($nik){
-        $pasien = new Pasien();
-        $pasien->nik = $nik;
-
-        $detail = Pasien::find($pasien->nik);
+        $detail = Pasien::find($nik);
         return view("vaksinasi.edit_vaksinasi", compact('detail'));
     }
 
@@ -64,6 +61,5 @@ class VaksinasiController extends Controller
         $pasien->save();
 
         return redirect()->route('vaksinasi.detail', ['nik' => $pasien->nik])->with('Data berhasil diubah');
-
     }
 }
