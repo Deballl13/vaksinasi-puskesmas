@@ -16,6 +16,9 @@
     <div class="col-md-10 col-sm-8">
         <div class="card">
             <div class="card-body">
+                <div class="mb-3">
+                    <a href="{{ route('vaksin.tambahd') }}" class="btn btn-success px-3">Tambah Stok</a>
+                </div>
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr class="text-center">

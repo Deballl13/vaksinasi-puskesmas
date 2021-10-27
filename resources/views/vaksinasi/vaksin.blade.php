@@ -15,7 +15,7 @@
     <div class="card-body">
         <div class="mb-3">
             <a href="{{ route('vaksin.detail') }}" class="btn btn-primary px-3">Detail</a>
-            <a href="{{ route('vaksin.tambah') }}" class="btn btn-success px-3">Tambah</a>
+            <a href="{{ route('vaksin.tambah') }}" class="btn btn-success px-3">Tambah Jenis Vaksin</a>
         </div>
         <table id="example" class="table table-striped" style="width:100%">
             <thead>

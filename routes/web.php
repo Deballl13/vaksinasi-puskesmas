@@ -34,6 +34,9 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::get('/vaksin', [VaksinasiController::class, 'vaksin'])->name('vaksin');
     Route::get('/vaksin/d', [VaksinasiController::class, 'detail_vaksin'])->name('vaksin.detail');
     Route::get('/vaksin/t', [VaksinasiController::class, 'tambah_vaksin'])->name('vaksin.tambah');
+    Route::post('/vaksin/store', [VaksinasiController::class, 'store_vaksin'])->name('vaksin.store');
+    Route::get('/vaksin/td', [VaksinasiController::class, 'tambah_stok_vaksin'])->name('vaksin.tambahd');
+    Route::post('/vaksin/store_stok', [VaksinasiController::class, 'store_stok_vaksin'])->name('vaksin.store_stok');
 
 
     Route::post('/vaksinasi/t/daftar', [PendaftaranController::class, 'store_daftar'])->name('pendaftaran.tambah');
