@@ -87,6 +87,13 @@ class VaksinasiController extends Controller
         $detail_vaksin->tanggal = $request->tanggal;
         $detail_vaksin->save();
 
+        $vaksin = Vaksin::find($request->id_vaksin);
+
+        $stok = $vaksin->stok + $request->jumlah;
+
+        $vaksin->stok = $stok;
+        $vaksin->save();
+
         $vaksin = Vaksin::get();
         return view("vaksinasi.tambah_stok_vaksin", compact('vaksin'));
     }
