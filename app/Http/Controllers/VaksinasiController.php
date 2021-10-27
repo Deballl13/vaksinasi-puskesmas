@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pasien;
 use App\Models\Vaksinasi;
+use App\Models\Vaksin;
+use App\Models\Detail_Vaksin;
 use Illuminate\Support\Str;
 
 
@@ -36,11 +38,14 @@ class VaksinasiController extends Controller
     }
 
     public function vaksin(){
-        return view("vaksinasi.vaksin");
+        $vaksin = Vaksin::get();
+        return view("vaksinasi.vaksin", compact('vaksin'));
     }
 
     public function detail_vaksin(){
-        return view("vaksinasi.detail_vaksin");
+        $detail_vaksin = Detail_Vaksin::join("vaksin", "vaksin.id", "=", "detail_vaksin.id_vaksin")
+        ->get();
+        return view("vaksinasi.detail_vaksin", compact('detail_vaksin'));
     }
 
     public function tambah_vaksin(){

@@ -30,7 +30,7 @@
             </div>
 
             <div class="card-body">
-                <h5>120</h5>
+                <h5>{{$stok}}</h5>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="card-body">
-                <h5>50</h5>
+                <h5>{{$pasien_vaksinasi}}</h5>
             </div>
         </div>
     </div>

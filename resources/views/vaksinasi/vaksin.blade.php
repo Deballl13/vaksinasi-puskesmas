@@ -27,30 +27,14 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($vaksin as $v)
                 <tr class="text-center">
-                    <td>1.</td>
-                    <td>xxxxxxxxxxx</td>
-                    <td>Sinovac</td>
-                    <td>30</td>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$v->id}}</td>
+                    <td>{{$v->nama_vaksin}}</td>
+                    <td>{{$v->stok}}</td>
                 </tr>
-                <tr class="text-center">
-                    <td>2.</td>
-                    <td>xxxxxxxxxxx</td>
-                    <td>Astrazeneca</td>
-                    <td>30</td>
-                </tr>
-                <tr class="text-center">
-                    <td>2.</td>
-                    <td>xxxxxxxxxxx</td>
-                    <td>Moderna</td>
-                    <td>30</td>
-                </tr>
-                <tr class="text-center">
-                    <td>2.</td>
-                    <td>xxxxxxxxxxx</td>
-                    <td>Sinopan</td>
-                    <td>30</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
