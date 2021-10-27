@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="no_hp">
                         <label>Nama Vaksin</label>
-                        <select class="form-select form-control-sm mb-3" aria-label="Default select example" name="id_vaksin">
+                        <select class="form-select mb-3" aria-label="Default select example" name="id_vaksin">
                             <option selected>--Pilih Vaksin--</option>
                             @foreach($vaksin as $v)
                             <option value="{{$v->id}}">{{$v->nama_vaksin}}</option>
@@ -30,15 +30,15 @@
                     </div>
                     <div class="nik">
                         <label>Supplier</label>
-                        <input class="form-control form-control-sm mb-3" type="text" name="sumber_vaksin" aria-label="default input example">
+                        <input class="form-control mb-3" type="text" name="sumber_vaksin" aria-label="default input example">
                     </div>
                     <div class="email">
                         <label>Jumlah</label>
-                        <input class="form-control form-control-sm mb-3" type="number" name="jumlah" aria-label="default input example">
+                        <input class="form-control mb-3" type="number" name="jumlah" aria-label="default input example">
                     </div>
                     <div class="tanggal">
                         <label>Tanggal</label>
-                        <input class="form-control form-control-sm mb-3" type="date" name="tanggal" aria-label="default input example">
+                        <input class="form-control mb-3" type="date" name="tanggal" aria-label="default input example">
                     </div>
                 </div>
             </div>
