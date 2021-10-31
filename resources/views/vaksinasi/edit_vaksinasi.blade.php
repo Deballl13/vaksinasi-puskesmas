@@ -15,7 +15,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-8 col-sm-10 mb-5">
-        <form action="{{ route('vaksinasi.update.pasien', ['nik' => $detail->nik]) }}" method="POST" id="daftar">
+        <form action="{{ route('vaksinasi.update.pasien', ['nik' => $detail->nik]) }}" method="POST" id="daftar" onsubmit="return validateDaftar('edit')">
             @csrf
             @method('PUT')
             <div class="card">
@@ -69,7 +69,7 @@
                         <p class="invalid-feedback" style="font-size: 14px;">Masukkan alamat!</p>
                     </div>
                      <div class="riwayat mb-4">
-                        <label for="riwayat_penyakit">Riwayat penyakit<sup class="text-danger">*</sup></label>
+                        <label for="riwayat_penyakit">Riwayat penyakit</label>
                         <div>
                             <textarea name="riwayat_penyakit" id="riwayat_penyakit" class="form-control" id="exampleFormControlTextarea1" rows="4" style="resize: none;">{{ $detail->riwayat_penyakit }}</textarea>
                         </div>
@@ -91,5 +91,5 @@
     });
 </script>
 
-<!-- <script src="{{ asset('js/validateInputForm.js') }}"></script> -->
+<script src="{{ asset('js/validateInputForm.js') }}"></script>
 @endsection

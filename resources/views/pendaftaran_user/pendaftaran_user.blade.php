@@ -41,7 +41,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 mb-3">
-                                <form class="ms-2" action="{{ route('user.daftar') }}" method="POST" id="daftar" onsubmit="return validateDaftar()">
+                                <form class="ms-2" action="{{ route('user.daftar') }}" method="POST" id="daftar" onsubmit="return validateDaftar('daftar', 'user')">
                                     @csrf
                                     <h4 class="mt-5">Silahkan isi biodata</h4>
                                     <div class="nama mt-3 mb-4">

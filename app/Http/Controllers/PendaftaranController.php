@@ -39,12 +39,11 @@ class PendaftaranController extends Controller
     public function user_daftar(Request $request){
         if(!Pasien::find($request->nik)){
             $pasien = new Pasien();
-
-            $pasien->nik = trim($request->nik);
+            $pasien->nik = htmlspecialchars(trim($request->nik));
             $pasien->nama_pasien = ucwords(htmlspecialchars(trim($request->nama_pasien)));
-            $pasien->tgl_lahir = $request->tgl_lahir;
-            $pasien->jenis_kelamin = $request->jenis_kelamin;
-            $pasien->no_hp = trim($request->no_hp);
+            $pasien->tgl_lahir = htmlspecialchars($request->tgl_lahir);
+            $pasien->jenis_kelamin = htmlspecialchars($request->jenis_kelamin);
+            $pasien->no_hp = htmlspecialchars(trim($request->no_hp));
             $pasien->email = htmlspecialchars(trim($request->email));
             $pasien->alamat = htmlspecialchars(trim($request->alamat));
             $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
@@ -52,7 +51,7 @@ class PendaftaranController extends Controller
         }
         else{
             $pasien = Pasien::find($request->nik);
-            $pasien->no_hp = trim($request->no_hp);
+            $pasien->no_hp = htmlspecialchars(trim($request->no_hp));
             $pasien->email = htmlspecialchars(trim($request->email));
             $pasien->alamat = htmlspecialchars(trim($request->alamat));
             $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
@@ -72,11 +71,11 @@ class PendaftaranController extends Controller
     public function store_daftar(Request $request){
         if(!Pasien::find($request->nik)){
             $pasien = new Pasien();
-            $pasien->nik = trim($request->nik);
+            $pasien->nik = htmlspecialchars(trim($request->nik));
             $pasien->nama_pasien = ucwords(htmlspecialchars(trim($request->nama_pasien)));
-            $pasien->tgl_lahir = $request->tgl_lahir;
-            $pasien->jenis_kelamin = $request->jenis_kelamin;
-            $pasien->no_hp = trim($request->no_hp);
+            $pasien->tgl_lahir = htmlspecialchars($request->tgl_lahir);
+            $pasien->jenis_kelamin = htmlspecialchars($request->jenis_kelamin);
+            $pasien->no_hp = htmlspecialchars(trim($request->no_hp));
             $pasien->email = htmlspecialchars(trim($request->email));
             $pasien->alamat = htmlspecialchars(trim($request->alamat));
             $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
@@ -84,7 +83,7 @@ class PendaftaranController extends Controller
         }
         else{
             $pasien = Pasien::find($request->nik);
-            $pasien->no_hp = trim($request->no_hp);
+            $pasien->no_hp = htmlspecialchars(trim($request->no_hp));
             $pasien->email = htmlspecialchars(trim($request->email));
             $pasien->alamat = htmlspecialchars(trim($request->alamat));
             $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
@@ -92,9 +91,9 @@ class PendaftaranController extends Controller
         }
 
         $vaksinasi = new Vaksinasi();
-        $vaksinasi->nik = trim($request->nik);
-        $vaksinasi->tgl_vaksin = $request->tgl_vaksin;
-        $vaksinasi->vaksin_ke = $request->vaksin_ke;
+        $vaksinasi->nik = htmlspecialchars(trim($request->nik));
+        $vaksinasi->tgl_vaksin = htmlspecialchars($request->tgl_vaksin);
+        $vaksinasi->vaksin_ke = htmlspecialchars($request->vaksin_ke);
         $vaksinasi->status = 0;
         $vaksinasi->save();
 
@@ -116,7 +115,7 @@ class PendaftaranController extends Controller
             }
             // jika selesai
             else if((int) $request->inputStatus === 2){
-                $vaksinasi->id_vaksin = $request->id_vaksin;
+                $vaksinasi->id_vaksin = htmlspecialchars($request->id_vaksin);
                 
                 $vaksin = Vaksin::find((int) $request->id_vaksin);
                 $vaksin->stok = $vaksin->stok-1;

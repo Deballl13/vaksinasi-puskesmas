@@ -13,38 +13,42 @@
 @endsection
 
 @section('content')
-<form action="{{ route('vaksin.store.stok') }}" method="POST">
+<form action="{{ route('vaksin.store.stok') }}" method="POST" id="tambahStok" onsubmit="return validateStok()">
     @csrf
     <div class="row">
         <div class="col-md-8 col-sm-10">
             <div class="card">
                 <div class="card-body">
-                    <div class="no_hp">
+                    <div class="no_hp mb-3">
                         <label>Nama Vaksin</label>
-                        <select class="form-select mb-3" aria-label="Default select example" name="id_vaksin">
-                            <option selected>--Pilih Vaksin--</option>
+                        <select class="form-select" aria-label="Default select example" name="id_vaksin">
+                            <option value="">--Pilih Vaksin--</option>
                             @foreach($vaksin as $v)
                             <option value="{{$v->id}}">{{$v->nama_vaksin}}</option>
                             @endforeach
                         </select>
+                        <p class="invalid-feedback" style="font-size: 14px;">Pilih jenis vaksin!</p>
                     </div>
-                    <div class="nik">
+                    <div class="nik mb-3">
                         <label>Supplier</label>
-                        <input class="form-control mb-3" type="text" name="sumber_vaksin" aria-label="default input example">
+                        <input class="form-control" type="text" name="sumber_vaksin" aria-label="default input example">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan nama supplier!</p>
                     </div>
-                    <div class="email">
+                    <div class="email mb-3">
                         <label>Jumlah</label>
-                        <input class="form-control mb-3" type="number" name="jumlah" aria-label="default input example">
+                        <input class="form-control" type="text" name="jumlah" aria-label="default input example" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan jumlah vaksin!</p>
                     </div>
-                    <div class="tanggal">
+                    <div class="tanggal mb-3">
                         <label>Tanggal</label>
-                        <input class="form-control mb-3" type="date" name="tanggal" aria-label="default input example">
+                        <input class="form-control" type="date" name="tanggal" aria-label="default input example">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan tanggal!</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 col-sm-4 mb-auto">
-            <button class="btn btn-primary">Tambah</button>
+            <button type="submit" class="btn btn-primary">Tambah</button>
         </div>
     </div>
 </form>
@@ -59,4 +63,6 @@
         });
     });
 </script>
+
+<script src="{{ asset('js/validateInputForm.js') }}"></script>
 @endsection

@@ -55,7 +55,7 @@
                         <p class="invalid-feedback" style="font-size: 14px;">Masukkan nomor hp!</p>
                     </div>
                     <div class="email mb-4">
-                        <label for="email">Email<sup class="text-danger">*</sup></label>
+                        <label for="email">Email</label>
                         <input class="form-control" id="email" type="text" name="email" aria-label="default input example">
                         <p class="invalid-feedback" style="font-size: 14px;">Masukkan email!</p>
                     </div>

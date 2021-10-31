@@ -43,7 +43,7 @@
                     </td>
                     <td>{{$v->email}}</td>
                     <td class="text-center">
-                        <form action="{{ route('vaksinasi.delete.pasien') }}" method="post">
+                        <form action="{{ route('vaksinasi.delete.pasien') }}" method="post" onsubmit="return confirm('Yakin mau dihapus?')">
                             @csrf
                             @method('DELETE')
 

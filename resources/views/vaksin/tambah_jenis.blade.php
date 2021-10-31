@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-<form action="{{ route('vaksin.store.jenis') }}" method="POST">
+<form action="{{ route('vaksin.store.jenis') }}" method="POST" id="form_tambah_jenis">
     @csrf
     <div class="row">
         <div class="col-md-6 col-sm-10">
@@ -20,9 +20,10 @@
                 <div class="card-body">
                     <div>
                         <label>Nama Vaksin</label>
-                        <input class="form-control mb-3" type="text" name="nama_vaksin" aria-label="default input example">
+                        <input class="form-control" type="text" name="nama_vaksin" aria-label="default input example">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan nama vaksin!</p>
                     </div>
-                    <button class="btn btn-primary float-end mr-4">Tambah</button>
+                    <button type="button" id="btnSubmit" class="btn btn-primary float-end mr-4 mt-3">Tambah</button>
                 </div>
             </div>
         </div>
@@ -38,5 +39,23 @@
             'lengthChange': false
         });
     });
+</script>
+
+<script>
+    const form = document.getElementById("form_tambah_jenis")
+    const btnSubmit = document.getElementById("btnSubmit");
+    const invalid_feedback = document.getElementsByClassName("invalid-feedback")[0];
+    
+    btnSubmit.onclick = ()=>{
+        if(form[1].value.trim() === ""){
+            form[1].classList.add("border-danger");
+            invalid_feedback.style.display = "block";
+        }
+        else{
+            form[1].classList.remove("border-danger");
+            invalid_feedback.style.display = "none";
+            form.submit();
+        }
+    }
 </script>
 @endsection

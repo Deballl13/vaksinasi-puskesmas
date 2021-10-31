@@ -139,7 +139,7 @@
 @section('script')
 <script>
     const form = document.getElementById("form_status");
-    const input = document.getElementById("inputStatus");
+    const status = document.getElementById("inputStatus");
     const btnSetuju = document.getElementById("btnSetuju");
     const btnTolak = document.getElementById("btnTolak");
     const btnSelesai = document.getElementById("btnSelesai");
@@ -150,23 +150,22 @@
 
     if (btnSetuju !== null && btnTolak !== null) {
         btnSetuju.onclick = () => {
-            input.value = 1;
+            status.value = 1;
         };
         btnTolak.onclick = () => {
-            input.value = 3;
+            status.value = 3;
         };
     } else if (btnSelesai !== null && btnBatal !== null) {
         btnSelesai.onclick = () => {
-            input.value = 2;
+            status.value = 2;
         };
         btnBatal.onclick = () => {
-            input.value = 4;
+            status.value = 4;
         };
         btnVaksin.onclick = ()=>{
             if(jenisVaksin.value === "null"){
                 jenisVaksin.classList.add("border-danger");
                 invalid_feedback.style.display = "block";
-                invalid_feedback.classList.add("fw-normal");
             }
             else{
                 jenisVaksin.classList.remove("border-danger");

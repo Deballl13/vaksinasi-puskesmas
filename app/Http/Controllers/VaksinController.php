@@ -32,7 +32,7 @@ class VaksinController extends Controller
         $detail_vaksin = new Detail_Vaksin();
         $detail_vaksin->id_vaksin = trim($request->id_vaksin);
         $detail_vaksin->sumber_vaksin = $request->sumber_vaksin;
-        $detail_vaksin->jumlah = $request->jumlah;
+        $detail_vaksin->jumlah = (int)$request->jumlah;
         $detail_vaksin->tanggal = $request->tanggal;
         $detail_vaksin->save();
 
