@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifPendaftaranVaksin;
 use Illuminate\Http\Request;
 use App\Models\Pasien;
+use App\Models\Vaksin;
 use App\Models\Vaksinasi;
+use Illuminate\Support\Facades\Mail;
 
 class PendaftaranController extends Controller
 {
@@ -12,6 +15,7 @@ class PendaftaranController extends Controller
         $pasien = Pasien::join("vaksinasi", "pasien.nik", "=", "vaksinasi.nik")
                             ->where('vaksinasi.status', 0)
                             ->orWhere('vaksinasi.status', 1)
+                            ->orderBy('vaksinasi.tgl_vaksin', 'asc')
                             ->get();
 
         return view("pendaftaran.pendaftaran", compact('pasien'));
@@ -22,8 +26,10 @@ class PendaftaranController extends Controller
                             ->where('pasien.nik', $nik)
                             ->orderBy('vaksinasi.vaksin_ke', 'desc')
                             ->first();
+
+        $vaksin = Vaksin::where('stok', ">", "0")->get();
         
-        return view("pendaftaran.detail", compact('detail'));
+        return view("pendaftaran.detail", compact('detail', 'vaksin'));
     }
 
     public function daftar(){
@@ -41,24 +47,31 @@ class PendaftaranController extends Controller
             $pasien->no_hp = trim($request->no_hp);
             $pasien->email = htmlspecialchars(trim($request->email));
             $pasien->alamat = htmlspecialchars(trim($request->alamat));
-            $pasien->riwayat_penyakit = (htmlspecialchars(trim($request->riwayat_penyakit)) !== NULL) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
+            $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
+            $pasien->save();
+        }
+        else{
+            $pasien = Pasien::find($request->nik);
+            $pasien->no_hp = trim($request->no_hp);
+            $pasien->email = htmlspecialchars(trim($request->email));
+            $pasien->alamat = htmlspecialchars(trim($request->alamat));
+            $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
             $pasien->save();
         }
 
         $vaksinasi = new Vaksinasi();
-        $vaksinasi->nik = trim($request->nik);
+        $vaksinasi->nik = (int) trim($request->nik);
         $vaksinasi->tgl_vaksin = $request->tgl_vaksin;
         $vaksinasi->vaksin_ke = $request->vaksin_ke;
         $vaksinasi->status = 0;
         $vaksinasi->save();
 
-        return redirect()->route('daftar')->with('Pendaftaran berhasil');
+        return redirect()->route('daftar')->with('success', 'Pendaftaran berhasil');
     }
 
     public function store_daftar(Request $request){
         if(!Pasien::find($request->nik)){
             $pasien = new Pasien();
-
             $pasien->nik = trim($request->nik);
             $pasien->nama_pasien = ucwords(htmlspecialchars(trim($request->nama_pasien)));
             $pasien->tgl_lahir = $request->tgl_lahir;
@@ -66,17 +79,59 @@ class PendaftaranController extends Controller
             $pasien->no_hp = trim($request->no_hp);
             $pasien->email = htmlspecialchars(trim($request->email));
             $pasien->alamat = htmlspecialchars(trim($request->alamat));
-            $pasien->riwayat_penyakit = (htmlspecialchars(trim($request->riwayat_penyakit)) !== NULL) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
+            $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
+            $pasien->save();
+        }
+        else{
+            $pasien = Pasien::find($request->nik);
+            $pasien->no_hp = trim($request->no_hp);
+            $pasien->email = htmlspecialchars(trim($request->email));
+            $pasien->alamat = htmlspecialchars(trim($request->alamat));
+            $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
             $pasien->save();
         }
 
         $vaksinasi = new Vaksinasi();
-        $vaksinasi->nik = trim($request->nik);
+        $vaksinasi->nik = (int) trim($request->nik);
         $vaksinasi->tgl_vaksin = $request->tgl_vaksin;
         $vaksinasi->vaksin_ke = $request->vaksin_ke;
         $vaksinasi->status = 0;
         $vaksinasi->save();
 
-        return redirect('/pendaftaran/d/'.$vaksinasi->nik)->with('Data berhasil ditambah');
+        return redirect('/pendaftaran/d/'.$request->nik)->with('success', 'Data berhasil ditambah');
+    }
+
+    public function update_status(Request $request, $nik){
+        $vaksinasi = Vaksinasi::where('nik', $nik)
+                                ->orderBy('vaksin_ke', 'desc')
+                                ->first();
+                                
+        $pasien = Pasien::find($nik);
+
+        // jika disetujui atau selesai
+        if($request->inputStatus !== 3 && $request->inputStatus !== 4){
+            // jika disetujui
+            if((int) $request->inputStatus === 1){
+                Mail::to($pasien->email)->send(new NotifPendaftaranVaksin($request->inputStatus, $pasien));
+            }
+            // jika selesai
+            else if((int) $request->inputStatus === 2){
+                $vaksin = Vaksin::find((int) $request->id_vaksin);
+                $vaksin->stok = $vaksin->stok-1;
+                $vaksin->save();
+            }
+            $vaksinasi->status = $request->inputStatus;
+            $vaksinasi->save();
+        }
+        // jika ditolak atau batal
+        else{
+            // jika ditolak
+            if((int) $request->inputStatus === 3){
+                Mail::to($pasien->email)->send(new NotifPendaftaranVaksin($request->inputStatus, $pasien));
+            }
+            $vaksinasi->delete();
+        }
+
+        return redirect('pendaftaran');
     }
 }

@@ -15,7 +15,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-8 col-sm-10 mb-5">
-        <form action="{{ route('vaksinasi.edit.pasien', ['nik' => $detail->nik]) }}" method="POST">
+        <form action="{{ route('vaksinasi.update.pasien', ['nik' => $detail->nik]) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card">

@@ -43,8 +43,14 @@
                     </td>
                     <td>{{$v->email}}</td>
                     <td class="text-center">
-                        <a href="{{ route('vaksinasi.detail', ['nik' => $v->nik]) }}" class="btn btn-primary">Detail</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
+                        <form action="{{ route('vaksinasi.delete.pasien') }}" method="post">
+                            @csrf
+                            @method('DELETE')
+
+                            <a href="{{ route('vaksinasi.detail', ['nik' => $v->nik]) }}" class="btn btn-primary">Detail</a>
+                            <input type="text" name="nik" id="nik" value="{{ $v->nik }}" class="visually-hidden">
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

@@ -10,6 +10,7 @@ class Vaksinasi extends Model
     use HasFactory;
     protected $table = "vaksinasi";
     protected $fillable = ["nik", "id_vaksin", "tanggal_vaksin", "vaksin_ke", "status"];
+    protected $primaryKey = 'nik';
 
     public function pasien(){
         return $this->belongsTo(Pasien::class);

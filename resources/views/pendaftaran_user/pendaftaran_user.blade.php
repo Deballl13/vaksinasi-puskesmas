@@ -91,7 +91,6 @@
                                             <option hidden>Vaksin ke</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
-                                            <option value="3">3</option>
                                         </select>
                                     </div>
                                     <div class="tgl_vaksin mb-4">
@@ -99,7 +98,7 @@
                                         <input type="date" name="tgl_vaksin" id="tgl_vaksin" class="form-control">
                                     </div>
                                     <div class="riwayat mb-4">
-                                        <label for="riwayat_penyakit">Riwayat penyakit<sup class="text-danger">*</sup></label>
+                                        <label for="riwayat_penyakit">Riwayat penyakit</label>
                                         <div>
                                             <textarea name="riwayat_penyakit" id="riwayat_penyakit" class="form-control" id="exampleFormControlTextarea1" rows="4" style="resize: none;"></textarea>
                                         </div>

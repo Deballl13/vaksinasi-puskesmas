@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-<form action="{{ route('vaksin.store_stok') }}" method="POST">
+<form action="{{ route('vaksin.store.stok') }}" method="POST">
     @csrf
     <div class="row">
         <div class="col-md-8 col-sm-10">

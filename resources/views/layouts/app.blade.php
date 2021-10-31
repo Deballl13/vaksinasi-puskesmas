@@ -9,8 +9,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
-
     <title>@yield('title')</title>
 
     <!-- tab icon -->
@@ -36,7 +34,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-
     <!-- my style -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -59,7 +56,7 @@
                     <a href="{{ route('vaksinasi') }}" class="menu-link nav-link {{ request()->is('vaksinasi') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/t') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/d/*') ? 'text-primary' : '' }} {{ request()->is('vaksinasi/e/*') ? 'text-primary' : '' }}"><i class="fas fa-syringe icon"></i>Data Vaksinasi</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{{ route('vaksin') }}" class="menu-link nav-link {{ request()->is('vaksin') ? 'text-primary' : '' }} {{ request()->is('vaksin/t') ? 'text-primary' : '' }} {{ request()->is('vaksin/d') ? 'text-primary' : '' }}"><i class="fas fa-briefcase-medical icon"></i>Vaksin</a>
+                    <a href="{{ route('vaksin') }}" class="menu-link nav-link {{ request()->is('vaksin') ? 'text-primary' : '' }} {{ request()->is('vaksin/t') ? 'text-primary' : '' }} {{ request()->is('vaksin/d') ? 'text-primary' : '' }} {{ request()->is('vaksin/t/stok') ? 'text-primary' : '' }}"><i class="fas fa-briefcase-medical icon"></i>Vaksin</a>
                 </div>
             </div>
             <div class="logout mt-3 text-center">
@@ -106,11 +103,9 @@
     <!-- icon -->
     <script src="{{ asset('icon/js/all.js') }}"></script>
 
-
-    @yield('script')
-
     <!-- my script -->
     <script src="{{ asset('js/navbar.js') }}"></script>
+    @yield('script')
 
 </body>
 </html>

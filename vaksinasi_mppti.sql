@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2021 at 10:48 AM
+-- Generation Time: Oct 31, 2021 at 09:55 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -36,6 +36,15 @@ CREATE TABLE `detail_vaksin` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `detail_vaksin`
+--
+
+INSERT INTO `detail_vaksin` (`id`, `id_vaksin`, `sumber_vaksin`, `jumlah`, `tanggal`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Kemenkes', 10, '2021-10-14', '2021-10-30 20:37:37', '2021-10-30 20:37:37'),
+(2, 2, 'RS. M. Jamil', 25, '2021-10-16', '2021-10-30 20:38:05', '2021-10-30 20:38:05'),
+(3, 3, 'Kemenkas', 10, '2021-10-30', '2021-10-30 20:43:35', '2021-10-30 20:43:35');
 
 -- --------------------------------------------------------
 
@@ -70,14 +79,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(25, '2014_10_12_000000_create_users_table', 1),
-(26, '2014_10_12_100000_create_password_resets_table', 1),
-(27, '2019_08_19_000000_create_failed_jobs_table', 1),
-(28, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(29, '2021_09_30_004211_create_pasien_table', 1),
-(30, '2021_09_30_004222_create_vaksin_table', 1),
-(31, '2021_09_30_004235_create_detail_vaksin_table', 1),
-(32, '2021_09_30_035258_create_vaksinasi_table', 1);
+(33, '2014_10_12_000000_create_users_table', 1),
+(34, '2014_10_12_100000_create_password_resets_table', 1),
+(35, '2019_08_19_000000_create_failed_jobs_table', 1),
+(36, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(37, '2021_09_30_004211_create_pasien_table', 1),
+(38, '2021_09_30_004222_create_vaksin_table', 1),
+(39, '2021_09_30_004235_create_detail_vaksin_table', 1),
+(40, '2021_09_30_035258_create_vaksinasi_table', 1);
 
 -- --------------------------------------------------------
 
@@ -103,9 +112,11 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`nik`, `nama_pasien`, `tgl_lahir`, `jenis_kelamin`, `no_hp`, `email`, `alamat`, `riwayat_penyakit`, `created_at`, `updated_at`) VALUES
-(4045043505655405, 'Immalatunil Khaira Affi', '2001-05-07', 'Perempuan', '0896785432523', 'imma@gmail.com', 'terserah imma deh mau dimana', NULL, '2021-10-03 01:38:46', '2021-10-03 01:38:46'),
-(5607867867864784, 'Untung Jamari', '2000-08-12', 'Laki-Laki', '0812312312312', 'ari@gmail.com', 'disebuah planet bernama bumi', 'flu', '2021-10-03 01:45:46', '2021-10-03 01:45:46'),
-(5645645678000851, 'Khairul Zikria Burhan', '2001-10-06', 'Laki-Laki', '082131231231', 'zikri@gmail.com', 'dihatinya dia juga boleh', NULL, '2021-10-03 01:47:08', '2021-10-03 01:47:08');
+(4239840214987384, 'Immalatunil Khaira Affi', '2001-07-10', 'P', '0812312312312', 'imma@gmail.com', 'alamat imma', NULL, '2021-10-30 20:21:09', '2021-10-30 20:21:09'),
+(7815237813877636, 'Dhiya Nabila Denta', '2001-07-08', 'P', '08119001012', 'didi@gmail.com', 'alamat didi', NULL, '2021-10-30 20:34:44', '2021-10-31 01:36:07'),
+(7823748532174032, 'Ade Iqbal', '2001-07-12', 'L', '081289217121', 'iqbal@gmail.com', 'alamat iqbal', NULL, '2021-10-30 20:27:06', '2021-10-30 22:38:48'),
+(9079078209174890, 'Untung Jamari', '2000-03-20', 'L', '0821312312312', 'ari@gmail.com', 'alamat ari', NULL, '2021-10-30 20:23:55', '2021-10-30 20:23:55'),
+(9873249823798127, 'Khairul Zikria Burhan', '2001-10-01', 'L', '081291280001', 'zikri@gmail.com', 'alamat zikri', 'flu dan batuk', '2021-10-30 20:30:58', '2021-10-30 20:30:58');
 
 -- --------------------------------------------------------
 
@@ -160,7 +171,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Kelompok 2', 'kelompok2', 'kelompok2mppti@gmail.com', NULL, '$2y$10$CWwWP9SKtBpFF8hYsVF04OAyoqCpde8fAlWqqof3Piyq9CHcdAX9S', NULL, '2021-10-03 01:37:19', '2021-10-03 01:37:19');
+(1, 'Kelompok 2', 'admin', 'kelompok2mppti@gmail.com', NULL, '$2y$10$4eOQ0ROjNDkXZjrP0/OYguWfTgH2152UGHYUJhsX2kcHM/GsN9vEu', NULL, '2021-10-30 20:19:42', '2021-10-30 20:19:42');
 
 -- --------------------------------------------------------
 
@@ -175,6 +186,15 @@ CREATE TABLE `vaksin` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `vaksin`
+--
+
+INSERT INTO `vaksin` (`id`, `nama_vaksin`, `stok`, `created_at`, `updated_at`) VALUES
+(1, 'Astrazeneca', 10, '2021-10-30 20:37:01', '2021-10-30 20:37:37'),
+(2, 'Sinovac', 23, '2021-10-30 20:37:09', '2021-10-31 01:33:49'),
+(3, 'Moderna', 8, '2021-10-30 20:37:15', '2021-10-31 01:34:11');
 
 -- --------------------------------------------------------
 
@@ -197,9 +217,11 @@ CREATE TABLE `vaksinasi` (
 --
 
 INSERT INTO `vaksinasi` (`nik`, `id_vaksin`, `tgl_vaksin`, `vaksin_ke`, `status`, `created_at`, `updated_at`) VALUES
-(4045043505655405, NULL, '2021-10-12', 1, 0, '2021-10-03 01:38:46', '2021-10-03 01:38:46'),
-(5607867867864784, NULL, '2021-10-09', 2, 0, '2021-10-03 01:45:46', '2021-10-03 01:45:46'),
-(5645645678000851, NULL, '2021-10-07', 1, 0, '2021-10-03 01:47:08', '2021-10-03 01:47:08');
+(4239840214987384, NULL, '2021-11-02', 1, 2, '2021-10-30 20:21:09', '2021-10-31 01:18:22'),
+(9873249823798127, NULL, '2021-11-02', 2, 2, '2021-10-30 20:30:58', '2021-10-31 01:33:35'),
+(7815237813877636, NULL, '2021-11-27', 2, 2, '2021-10-30 20:34:44', '2021-10-31 01:34:11'),
+(7823748532174032, NULL, '2021-11-07', 1, 2, '2021-10-30 22:54:24', '2021-10-31 01:34:00'),
+(9079078209174890, NULL, '2021-11-06', 2, 2, '2021-10-30 22:56:15', '2021-10-31 01:33:49');
 
 --
 -- Indexes for dumped tables
@@ -274,7 +296,7 @@ ALTER TABLE `vaksinasi`
 -- AUTO_INCREMENT for table `detail_vaksin`
 --
 ALTER TABLE `detail_vaksin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -286,7 +308,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -304,7 +326,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vaksin`
 --
 ALTER TABLE `vaksin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

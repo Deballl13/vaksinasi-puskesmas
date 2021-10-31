@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\VaksinasiController;
+use App\Http\Controllers\VaksinController;
+use App\Models\Vaksinasi;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/daftar', [PendaftaranController::class, 'daftar'])->name('daftar');
 Route::post('/u/daftar', [PendaftaranController::class, 'user_daftar'])->name('user.daftar');
 
-Auth::routes(['register' => false, 'reset' => false]);
+Auth::routes(['register' => true, 'reset' => false]);
 
 Route::middleware(['auth', 'revalidate'])->group(function () {
 
@@ -31,14 +33,20 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::get('/vaksinasi/d/{nik}', [VaksinasiController::class, 'detail'])->name('vaksinasi.detail');
     Route::get('/vaksinasi/e/{nik}', [VaksinasiController::class, 'edit'])->name('vaksinasi.edit');
     Route::get('/vaksinasi/t', [VaksinasiController::class, 'tambah'])->name('vaksinasi.tambah');
-    Route::get('/vaksin', [VaksinasiController::class, 'vaksin'])->name('vaksin');
-    Route::get('/vaksin/d', [VaksinasiController::class, 'detail_vaksin'])->name('vaksin.detail');
-    Route::get('/vaksin/t', [VaksinasiController::class, 'tambah_vaksin'])->name('vaksin.tambah');
-    Route::post('/vaksin/store', [VaksinasiController::class, 'store_vaksin'])->name('vaksin.store');
-    Route::get('/vaksin/td', [VaksinasiController::class, 'tambah_stok_vaksin'])->name('vaksin.tambahd');
-    Route::post('/vaksin/store_stok', [VaksinasiController::class, 'store_stok_vaksin'])->name('vaksin.store_stok');
+    Route::get('/vaksin', [VaksinController::class, 'index'])->name('vaksin');
+    Route::get('/vaksin/d', [VaksinController::class, 'detail'])->name('vaksin.detail');
+    Route::get('/vaksin/t', [VaksinController::class, 'tambah_jenis'])->name('vaksin.tambah');
+    Route::get('/vaksin/t/stok', [VaksinController::class, 'tambah_stok'])->name('vaksin.tambah.stok');
 
+    // tambah data
+    Route::post('/vaksinasi/daftar', [PendaftaranController::class, 'store_daftar'])->name('pendaftaran.store.daftar');
+    Route::post('/vaksin/jenis', [VaksinController::class, 'store_jenis'])->name('vaksin.store.jenis');
+    Route::post('/vaksin/stok', [VaksinController::class, 'store_stok'])->name('vaksin.store.stok');
 
-    Route::post('/vaksinasi/t/daftar', [PendaftaranController::class, 'store_daftar'])->name('pendaftaran.tambah');
-    Route::put('/vaksinasi/e/pasien', [VaksinasiController::class, 'update_pasien'])->name('vaksinasi.edit.pasien');
+    // update data
+    Route::put('/vaksinasi/pasien', [VaksinasiController::class, 'update_pasien'])->name('vaksinasi.update.pasien');
+    Route::put('/vaksinasi/status/{nik}', [PendaftaranController::class, 'update_status'])->name('vaksinasi.update.status');
+
+    // hapus data
+    Route::delete('/vaksinasi', [VaksinasiController::class, 'delete_pasien'])->name('vaksinasi.delete.pasien');
 });

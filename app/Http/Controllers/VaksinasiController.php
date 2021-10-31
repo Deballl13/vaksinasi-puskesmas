@@ -41,63 +41,6 @@ class VaksinasiController extends Controller
         return view("vaksinasi.tambah_vaksinasi");
     }
 
-    public function vaksin()
-    {
-        $vaksin = Vaksin::get();
-        return view("vaksinasi.vaksin", compact('vaksin'));
-    }
-
-    public function detail_vaksin()
-    {
-        $detail_vaksin = Detail_Vaksin::join("vaksin", "vaksin.id", "=", "detail_vaksin.id_vaksin")
-            ->get();
-        return view("vaksinasi.detail_vaksin", compact('detail_vaksin'));
-    }
-
-    public function tambah_vaksin()
-    {
-        return view("vaksinasi.tambah_vaksin");
-    }
-
-    public function store_vaksin(Request $request)
-    {
-
-        $vaksin = new Vaksin();
-        $vaksin->id = trim($request->kode_vaksin);
-        $vaksin->nama_vaksin = $request->nama_vaksin;
-        $vaksin->stok = 0;
-        $vaksin->save();
-
-        return view("vaksinasi.tambah_vaksin");
-    }
-
-    public function tambah_stok_vaksin()
-    {
-        $vaksin = Vaksin::get();
-        return view("vaksinasi.tambah_stok_vaksin", compact('vaksin'));
-    }
-
-    public function store_stok_vaksin(Request $request)
-    {
-
-        $detail_vaksin = new Detail_Vaksin();
-        $detail_vaksin->id_vaksin = trim($request->id_vaksin);
-        $detail_vaksin->sumber_vaksin = $request->sumber_vaksin;
-        $detail_vaksin->jumlah = $request->jumlah;
-        $detail_vaksin->tanggal = $request->tanggal;
-        $detail_vaksin->save();
-
-        $vaksin = Vaksin::find($request->id_vaksin);
-
-        $stok = $vaksin->stok + $request->jumlah;
-
-        $vaksin->stok = $stok;
-        $vaksin->save();
-
-        $vaksin = Vaksin::get();
-        return view("vaksinasi.tambah_stok_vaksin", compact('vaksin'));
-    }
-
     public function update_pasien(Request $request)
     {
         $pasien = Pasien::find($request->nik);
@@ -109,9 +52,16 @@ class VaksinasiController extends Controller
         $pasien->no_hp = trim($request->no_hp);
         $pasien->email = htmlspecialchars(trim($request->email));
         $pasien->alamat = htmlspecialchars(trim($request->alamat));
-        $pasien->riwayat_penyakit = htmlspecialchars(trim($request->riwayat_penyakit));
+        $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
         $pasien->save();
 
         return redirect()->route('vaksinasi.detail', ['nik' => $pasien->nik])->with('Data berhasil diubah');
+    }
+
+    public function delete_pasien(Request $request){
+        $pasien = Pasien::find($request->nik);
+        $pasien->delete();
+
+        return redirect()->back();
     }
 }

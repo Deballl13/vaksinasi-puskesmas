@@ -96,8 +96,47 @@
         </div>
     </div>
     <div class="col-md-4 col-sm-2 mb-auto">
-        <button class="btn btn-success">Setuju</button>
-        <button class="btn btn-danger">Tolak</button>
+        <form action="{{ route('vaksinasi.update.status', ['nik' => $detail->nik]) }}" method="post" id="form_status">
+            @csrf
+            @method('PUT')
+
+            <input type="text" name="inputStatus" id="inputStatus" class="visually-hidden">
+            @if($detail->status === 0)
+            <button type="submit" id="btnSetuju" class="btn btn-success">Setuju</button>
+            <button type="submit" id="btnTolak" class="btn btn-danger">Tolak</button>
+            @elseif($detail->status === 1)
+            <button type="button" id="btnSelesai" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Selesai</button>
+            <button type="submit" id="btnBatal" class="btn btn-danger">Batal</button>
+            @endif
     </div>
 </div>
+
+
+<!-- Modal -->
+<<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Jenis Vaksin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <select class="form-select mb-3" aria-label="Default select example" name="id_vaksin">
+                    <option selected>--Pilih Vaksin--</option>
+                    @foreach($vaksin as $v)
+                    <option value="{{$v->id}}">{{$v->nama_vaksin}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Selesai</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/validateForm.js') }}"></script>
 @endsection
