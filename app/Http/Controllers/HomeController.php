@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
         $pasien = Pasien::join("vaksinasi", "pasien.nik", "=", "vaksinasi.nik")
                             ->where('vaksinasi.status', 0)
+                            ->orWhere('vaksinasi.status', 1)
                             ->count();
 
         $stok = Vaksin::sum('stok');

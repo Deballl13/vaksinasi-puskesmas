@@ -44,11 +44,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="col-md-2 col-sm-4 mb-auto">
-        <a href="{{ route('vaksin') }}">
-            <button class="btn btn-primary">Kembali</button>
-        </a>
-    </div> -->
 </div>
 @endsection
 

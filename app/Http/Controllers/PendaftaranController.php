@@ -109,13 +109,15 @@ class PendaftaranController extends Controller
         $pasien = Pasien::find($nik);
 
         // jika disetujui atau selesai
-        if($request->inputStatus !== 3 && $request->inputStatus !== 4){
+        if((int)$request->inputStatus !== 3 && (int)$request->inputStatus !== 4){
             // jika disetujui
             if((int) $request->inputStatus === 1){
                 Mail::to($pasien->email)->send(new NotifPendaftaranVaksin($request->inputStatus, $pasien));
             }
             // jika selesai
             else if((int) $request->inputStatus === 2){
+                $vaksinasi->id_vaksin = $request->id_vaksin;
+                
                 $vaksin = Vaksin::find((int) $request->id_vaksin);
                 $vaksin->stok = $vaksin->stok-1;
                 $vaksin->save();

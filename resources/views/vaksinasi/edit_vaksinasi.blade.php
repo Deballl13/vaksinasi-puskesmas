@@ -15,7 +15,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-8 col-sm-10 mb-5">
-        <form action="{{ route('vaksinasi.update.pasien', ['nik' => $detail->nik]) }}" method="POST">
+        <form action="{{ route('vaksinasi.update.pasien', ['nik' => $detail->nik]) }}" method="POST" id="daftar">
             @csrf
             @method('PUT')
             <div class="card">
@@ -23,10 +23,12 @@
                     <div class="nama mt-3 mb-4">
                         <label for="nama_pasien">Nama<sup class="text-danger">*</sup></label>
                         <input class="form-control" id="nama_pasien" type="text" name="nama_pasien" value="{{ $detail->nama_pasien }}" aria-label="default input example">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan nama!</p>
                     </div>
                     <div class="tgl_lahir mb-4">
                         <label for="tgl_lahir" class="form-label">Tanggal lahir<sup class="text-danger">*</sup></label>
                         <input type="date" name="tgl_lahir" id="tgl_lahir" value="{{ $detail->tgl_lahir }}" class="form-control">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan tanggal lahir!</p>
                     </div>
                     <div class="jenis_kelamin mb-4">
                         <label>Jenis Kelamin<sup class="text-danger">*</sup></label>
@@ -44,24 +46,27 @@
                                 Perempuan
                             </label>
                         </div>
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan jenis kelamin!</p>
                     </div>
                     <div class="nik mb-4">
                         <label for="nik">NIK<sup class="text-danger">*</sup></label>
-                        <input class="form-control" id="nik" type="text" maxlength="16" name="nik" value="{{ $detail->nik }}" aria-label="default input example">
+                        <input class="form-control" id="nik" type="text" maxlength="16" name="nik" value="{{ $detail->nik }}" aria-label="default input example" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan nik!</p>
                     </div>
                     <div class="no_hp mb-4">
                         <label for="no_hp">No. Hp<sup class="text-danger">*</sup></label>
-                        <input class="form-control" id="no_hp" type="text" name="no_hp" value="{{ $detail->no_hp }}" aria-label="default input example">
+                        <input class="form-control" id="no_hp" type="text" name="no_hp" value="{{ $detail->no_hp }}" aria-label="default input example" maxlength="12" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan nomor hp!</p>
                     </div>
                     <div class="email mb-4">
                         <label for="email">Email</label>
                         <input class="form-control" id="email" type="text" name="email" value="{{ $detail->email }}" aria-label="default input example">
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan email!</p>
                     </div>
                     <div class="alamat">
                         <label for="alamat">Alamat<sup class="text-danger">*</sup></label>
-                        <div class="mb-3">
-                            <textarea name="alamat" class="form-control" id="alamat" rows="4" style="resize: none;">{{ $detail->alamat }}</textarea>
-                        </div>
+                        <textarea name="alamat" class="form-control mb-3" id="alamat" rows="4" style="resize: none;">{{ $detail->alamat }}</textarea>
+                        <p class="invalid-feedback" style="font-size: 14px;">Masukkan alamat!</p>
                     </div>
                      <div class="riwayat mb-4">
                         <label for="riwayat_penyakit">Riwayat penyakit<sup class="text-danger">*</sup></label>
@@ -85,4 +90,6 @@
         $('#example').DataTable();
     });
 </script>
+
+<!-- <script src="{{ asset('js/validateInputForm.js') }}"></script> -->
 @endsection

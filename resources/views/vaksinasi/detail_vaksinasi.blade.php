@@ -90,6 +90,7 @@
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
+                                        <p>Jenis Vaksin <span class="ms-4">: {{$v->nama_vaksin}}</span></p>
                                         <p>Tanggal Vaksin : {{ date("d-m-Y", strtotime($v->tgl_vaksin)) }}</p>
                                         <p>Status <span class="ms-5 ps-2">: {{($v->status === 2) ? 'Selesai' : 'Belum Selesai'}}</span></p>
                                         <form action="{{ route('vaksinasi.delete.vaksinasi', ['nik' => $detail->nik]) }}" method="post">

@@ -73,7 +73,7 @@
 
                 <!-- burger icon toggle -->
                 <div class="position-relative">
-                    <input type="checkbox" name="sidebar-toggle" id="sidebar-toggle" class="position-absolute start-0">
+                    <input type="checkbox" name="sidebar-toggle" id="sidebar-toggle" class="position-absolute start-0" style="cursor: pointer;">
                     <span><i class="fas fa-bars burger-icon"></i></span>
                 </div>
 

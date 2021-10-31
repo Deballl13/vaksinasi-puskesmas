@@ -25,8 +25,9 @@ class VaksinasiController extends Controller
     public function detail($nik)
     {
         $detail = Pasien::find($nik);
-        $vaksinasi = Vaksinasi::where('nik', $nik)->get();
-        // dd($vaksinasi);
+        $vaksinasi = Vaksinasi::join("vaksin", "vaksin.id", "=", "vaksinasi.id_vaksin")
+                                ->where('vaksinasi.nik', $nik)
+                                ->get();
         return view("vaksinasi.detail_vaksinasi", compact('detail', 'vaksinasi'));
     }
 

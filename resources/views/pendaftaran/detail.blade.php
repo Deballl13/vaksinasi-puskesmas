@@ -121,15 +121,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <select class="form-select mb-3" aria-label="Default select example" name="id_vaksin">
-                    <option selected>--Pilih Vaksin--</option>
+                <select class="form-select" aria-label="Default select example" name="id_vaksin">
+                    <option value="null">--Pilih Vaksin--</option>
                     @foreach($vaksin as $v)
                     <option value="{{$v->id}}">{{$v->nama_vaksin}}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Selesai</button>
+                <p class="invalid-feedback" style="font-size: 14px;">Pilih jenis vaksin!</p>
+                <button type="button" id="btnVaksin" class="btn btn-primary float-end mt-3">Selesai</button>
             </div>
         </div>
     </div>
@@ -138,5 +137,43 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/validateForm.js') }}"></script>
+<script>
+    const form = document.getElementById("form_status");
+    const input = document.getElementById("inputStatus");
+    const btnSetuju = document.getElementById("btnSetuju");
+    const btnTolak = document.getElementById("btnTolak");
+    const btnSelesai = document.getElementById("btnSelesai");
+    const btnBatal = document.getElementById("btnBatal");
+    const btnVaksin = document.getElementById("btnVaksin");
+    const jenisVaksin = document.getElementsByName("id_vaksin")[0];
+    const invalid_feedback = document.getElementsByClassName("invalid-feedback")[0];
+
+    if (btnSetuju !== null && btnTolak !== null) {
+        btnSetuju.onclick = () => {
+            input.value = 1;
+        };
+        btnTolak.onclick = () => {
+            input.value = 3;
+        };
+    } else if (btnSelesai !== null && btnBatal !== null) {
+        btnSelesai.onclick = () => {
+            input.value = 2;
+        };
+        btnBatal.onclick = () => {
+            input.value = 4;
+        };
+        btnVaksin.onclick = ()=>{
+            if(jenisVaksin.value === "null"){
+                jenisVaksin.classList.add("border-danger");
+                invalid_feedback.style.display = "block";
+                invalid_feedback.classList.add("fw-normal");
+            }
+            else{
+                jenisVaksin.classList.remove("border-danger");
+                invalid_feedback.style.display = "none";
+                form.submit();
+            }
+        }
+    }
+</script>
 @endsection
