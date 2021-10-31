@@ -48,5 +48,6 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::put('/vaksinasi/status/{nik}', [PendaftaranController::class, 'update_status'])->name('vaksinasi.update.status');
 
     // hapus data
-    Route::delete('/vaksinasi', [VaksinasiController::class, 'delete_pasien'])->name('vaksinasi.delete.pasien');
+    Route::delete('/pasien', [VaksinasiController::class, 'delete_pasien'])->name('vaksinasi.delete.pasien');
+    Route::delete('/vaksinasi/{nik}', [VaksinasiController::class, 'delete_vaksinasi'])->name('vaksinasi.delete.vaksinasi');
 });

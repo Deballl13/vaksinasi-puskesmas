@@ -60,7 +60,7 @@ class PendaftaranController extends Controller
         }
 
         $vaksinasi = new Vaksinasi();
-        $vaksinasi->nik = (int) trim($request->nik);
+        $vaksinasi->nik = trim($request->nik);
         $vaksinasi->tgl_vaksin = $request->tgl_vaksin;
         $vaksinasi->vaksin_ke = $request->vaksin_ke;
         $vaksinasi->status = 0;
@@ -92,7 +92,7 @@ class PendaftaranController extends Controller
         }
 
         $vaksinasi = new Vaksinasi();
-        $vaksinasi->nik = (int) trim($request->nik);
+        $vaksinasi->nik = trim($request->nik);
         $vaksinasi->tgl_vaksin = $request->tgl_vaksin;
         $vaksinasi->vaksin_ke = $request->vaksin_ke;
         $vaksinasi->status = 0;

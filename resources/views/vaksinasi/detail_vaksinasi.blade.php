@@ -92,6 +92,12 @@
                                     <div class="accordion-body">
                                         <p>Tanggal Vaksin : {{ date("d-m-Y", strtotime($v->tgl_vaksin)) }}</p>
                                         <p>Status <span class="ms-5 ps-2">: {{($v->status === 2) ? 'Selesai' : 'Belum Selesai'}}</span></p>
+                                        <form action="{{ route('vaksinasi.delete.vaksinasi', ['nik' => $detail->nik]) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="text" name="vaksin_ke" id="vaksin_ke" value="{{$v->vaksin_ke}}" class="visually-hidden">
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

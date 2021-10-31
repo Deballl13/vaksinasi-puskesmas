@@ -64,4 +64,11 @@ class VaksinasiController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete_vaksinasi(Request $request, $nik){
+        $vaksinasi = Vaksinasi::find($nik);
+        $vaksinasi->delete();
+
+        return redirect()->back();
+    }
 }
