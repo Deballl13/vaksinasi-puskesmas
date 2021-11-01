@@ -14,9 +14,10 @@ class VaksinasiController extends Controller
 {
     public function index()
     {
-        $vaksinasi = Vaksinasi::join("pasien", "pasien.nik", "=", "vaksinasi.nik")
-            ->where('vaksinasi.status', 2)
-            ->orderByDesc('vaksinasi.tgl_vaksin')
+        $vaksinasi = Vaksinasi::rightJoin("pasien", "pasien.nik", "=", "vaksinasi.nik")
+            ->whereNull('vaksinasi.status')
+            ->orWhere('vaksinasi.status', 2)
+            ->orderBy('pasien.nama_pasien')
             ->distinct()
             ->get();
         return view("vaksinasi.vaksinasi", compact('vaksinasi'));

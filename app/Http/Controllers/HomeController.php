@@ -33,7 +33,8 @@ class HomeController extends Controller
         $stok = Vaksin::sum('stok');
 
         $pasien_vaksinasi = Pasien::join("vaksinasi", "pasien.nik", "=", "vaksinasi.nik")
-                            ->where('vaksinasi.status', 2)
+                            ->whereNull('vaksinasi.status')
+                            ->orWhere('vaksinasi.status', 2)
                             ->count();
         
         return view('home', compact('pasien', 'stok', 'pasien_vaksinasi'));
