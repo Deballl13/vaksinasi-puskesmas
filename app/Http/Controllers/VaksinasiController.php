@@ -28,7 +28,7 @@ class VaksinasiController extends Controller
         $vaksinasi = Vaksinasi::join("pasien", "pasien.nik", "=", "vaksinasi.nik")
             ->join("vaksin", "vaksin.id", "=", "vaksinasi.id_vaksin")
             ->where('vaksinasi.status', 2)
-            ->orderByDesc('vaksinasi.tgl_vaksin')
+            ->orderBy('vaksinasi.tgl_vaksin', 'ASC')
             ->distinct()
             ->get();
         return view("vaksinasi.print", compact('vaksinasi'));

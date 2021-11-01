@@ -84,7 +84,7 @@
                     <td>{{$v->email}}</td>
                     <td>{{$v->nama_vaksin}}</td>
                     <td>{{$v->vaksin_ke}}</td>
-                    <td>{{$v->tgl_vaksin}}</td>
+                    <td>{{date("d-m-Y", strtotime($v->tgl_vaksin))}}</td>
                 </tr>
                 @endforeach
             </tbody>
