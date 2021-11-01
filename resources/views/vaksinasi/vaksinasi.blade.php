@@ -15,7 +15,7 @@
     <div class="card-body">
         <div class="mb-3">
             <a href="{{ route('vaksinasi.tambah') }}" class="btn btn-success px-3">Tambah</a>
-            <a href="#" class="btn btn-warning px-3">Print</a>
+            <a href="{{ route('vaksinasi.print') }}" class="btn btn-warning px-3" target="_blank">Print</a>
         </div>
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
@@ -36,9 +36,9 @@
                     <td>{{$v->nama_pasien}}</td>
                     <td>
                         @if($v->jenis_kelamin === 'L')
-                            Laki-laki
+                        Laki-laki
                         @elseif($v->jenis_kelamin === 'P')
-                            Perempuan
+                        Perempuan
                         @endif
                     </td>
                     <td>{{$v->email}}</td>
