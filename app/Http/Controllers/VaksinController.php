@@ -54,11 +54,12 @@ class VaksinController extends Controller
 
     public function store_jenis(Request $request)
     {
-
-        $vaksin = new Vaksin();
-        $vaksin->nama_vaksin = $request->nama_vaksin;
-        $vaksin->stok = 0;
-        $vaksin->save();
+        if(Vaksin::where('nama_vaksin', $request->nama_vaksin)->first() === null){
+            $vaksin = new Vaksin();
+            $vaksin->nama_vaksin = ucwords(htmlspecialchars(trim($request->nama_vaksin)));;
+            $vaksin->stok = 0;
+            $vaksin->save();
+        }
 
         return redirect()->route('vaksin');
     }

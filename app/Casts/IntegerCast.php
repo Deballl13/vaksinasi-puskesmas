@@ -4,7 +4,7 @@ namespace App\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
-class NikCasts implements CastsAttributes
+class IntegerCast implements CastsAttributes
 {
     /**
      * Cast the given value.
@@ -13,9 +13,9 @@ class NikCasts implements CastsAttributes
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
-     * @return array
+     * @return mixed
      */
-    public function get($model, $key, $value, $attributes)
+    public function get($model, string $key, $value, array $attributes)
     {
         return intval($value);
     }
@@ -25,11 +25,11 @@ class NikCasts implements CastsAttributes
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @param  string  $key
-     * @param  array  $value
+     * @param  mixed  $value
      * @param  array  $attributes
-     * @return string
+     * @return mixed
      */
-    public function set($model, $key, $value, $attributes)
+    public function set($model, string $key, $value, array $attributes)
     {
         return intval($value);
     }

@@ -15,11 +15,11 @@ class VaksinasiController extends Controller
     public function index()
     {
         $vaksinasi = Vaksinasi::rightJoin("pasien", "pasien.nik", "=", "vaksinasi.nik")
-            ->whereNull('vaksinasi.status')
-            ->orWhere('vaksinasi.status', 2)
-            ->orderBy('pasien.nama_pasien')
-            ->distinct()
-            ->get();
+                                ->whereNull('vaksinasi.status')
+                                ->orWhere('vaksinasi.status', 2)
+                                ->orderBy('pasien.nama_pasien')
+                                ->distinct()
+                                ->get();
         return view("vaksinasi.vaksinasi", compact('vaksinasi'));
     }
 
@@ -36,11 +36,13 @@ class VaksinasiController extends Controller
 
     public function detail($nik)
     {
-        $detail = Pasien::find($nik);
+        $pasien = Pasien::find($nik);
         $vaksinasi = Vaksinasi::join("vaksin", "vaksin.id", "=", "vaksinasi.id_vaksin")
-            ->where('vaksinasi.nik', $nik)
-            ->get();
-        return view("vaksinasi.detail_vaksinasi", compact('detail', 'vaksinasi'));
+                                ->select('vaksinasi.*', 'vaksin.nama_vaksin')
+                                ->where('vaksinasi.nik', $nik)
+                                ->get();
+
+        return view("vaksinasi.detail_vaksinasi", compact('pasien', 'vaksinasi'));
     }
 
     public function edit($nik)
@@ -57,13 +59,12 @@ class VaksinasiController extends Controller
     public function update_pasien(Request $request)
     {
         $pasien = Pasien::find($request->nik);
-
-        $pasien->nik = trim($request->nik);
+        $pasien->nik = htmlspecialchars(trim($request->nik));
         $pasien->nama_pasien = ucwords(htmlspecialchars(trim($request->nama_pasien)));
-        $pasien->tgl_lahir = $request->tgl_lahir;
-        $pasien->jenis_kelamin = $request->jenis_kelamin;
-        $pasien->no_hp = trim($request->no_hp);
-        $pasien->email = htmlspecialchars(trim($request->email));
+        $pasien->tgl_lahir = htmlspecialchars($request->tgl_lahir);
+        $pasien->jenis_kelamin = htmlspecialchars($request->jenis_kelamin);
+        $pasien->no_hp = htmlspecialchars(trim($request->no_hp));
+        $pasien->email = isset($request->email) ? htmlspecialchars(trim($request->email)) : NULL;
         $pasien->alamat = htmlspecialchars(trim($request->alamat));
         $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
         $pasien->save();
@@ -79,9 +80,9 @@ class VaksinasiController extends Controller
         return redirect()->back();
     }
 
-    public function delete_vaksinasi(Request $request, $nik)
+    public function delete_vaksinasi(Request $request)
     {
-        $vaksinasi = Vaksinasi::find($nik);
+        $vaksinasi = Vaksinasi::find($request->id);
         $vaksinasi->delete();
 
         return redirect()->back();

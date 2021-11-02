@@ -25,7 +25,7 @@ class NotifPendaftaranVaksin extends Mailable
         $this->jenis_kelamin = $pasien->jenis_kelamin;
         $this->no_hp = $pasien->no_hp;
         $this->alamat = $pasien->alamat;
-        $this->status = (int) $status;
+        $this->status = $status;
     }
 
     /**

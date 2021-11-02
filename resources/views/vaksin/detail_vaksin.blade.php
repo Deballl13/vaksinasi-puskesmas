@@ -13,7 +13,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-10 col-sm-8">
+    <div class="col-md-9 col-sm-8">
         <div class="card">
             <div class="card-body">
                 <div class="mb-3">
@@ -23,7 +23,6 @@
                     <thead>
                         <tr class="text-center">
                             <th>No.</th>
-                            <th>Kode Vaksin</th>
                             <th>Supplier</th>
                             <th>Nama Vaksin</th>
                             <th>Jumlah</th>
@@ -33,7 +32,6 @@
                         @foreach($detail_vaksin as $dv)
                         <tr class="text-center">
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$dv->id_vaksin}}</td>
                             <td>{{$dv->sumber_vaksin}}</td>
                             <td>{{$dv->nama_vaksin}}</td>
                             <td>{{$dv->jumlah}}</td>

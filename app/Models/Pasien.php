@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\IntegerCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Casts\NikCasts;
@@ -12,7 +13,7 @@ class Pasien extends Model
     protected $table = "pasien";
     protected $fillable = ["nik", "nama_pasien", "tgl_lahir", "jenis_kelamin", "no_hp", "email", "alamat", "riwayat_penyakit"];
     protected $casts = [
-        'nik' => NikCasts::class,
+        'nik' => IntegerCast::class,
     ];
     protected $primaryKey = 'nik';
 

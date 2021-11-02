@@ -20,13 +20,13 @@
                     <div class="col-md-6 col-sm-12">
                         <div id="nama">
                             <h5>Nama</h5>
-                            <p>{{$detail->nama_pasien}}</p>
+                            <p>{{$pasien->nama_pasien}}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div id="nik">
                             <h5>Nik</h5>
-                            <p>{{$detail->nik}}</p>
+                            <p>{{$pasien->nik}}</p>
                         </div>
                     </div>
                 </div>
@@ -34,16 +34,16 @@
                     <div class="col-md-6 col-sm-12">
                         <div id="tgl_lahir">
                             <h5>Tanggal lahir</h5>
-                            <p>{{date("d-m-Y", strtotime($detail->tgl_lahir))}}</p>
+                            <p>{{date("d-m-Y", strtotime($pasien->tgl_lahir))}}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div id="jenis_kelamin">
                             <h5>Jenis Kelamin</h5>
                             <p>
-                                @if($detail->jenis_kelamin === 'L')
+                                @if($pasien->jenis_kelamin === 'L')
                                     Laki-laki
-                                @elseif($detail->jenis_kelamin === 'P')
+                                @elseif($pasien->jenis_kelamin === 'P')
                                     Perempuan
                                 @endif
                             </p>
@@ -54,13 +54,13 @@
                     <div class="col-md-6 col-sm-12">
                         <div id="no_hp">
                             <h5>No. Hp</h5>
-                            <p>{{$detail->no_hp}}</p>
+                            <p>{{$pasien->no_hp}}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div id="email">
                             <h5>Email</h5>
-                            <p>{{ ($detail->email !== NULL) ? $detail->email : '-' }}</p>
+                            <p>{{ ($pasien->email !== NULL) ? $pasien->email : '-' }}</p>
                         </div>
                     </div>
                 </div>
@@ -68,13 +68,13 @@
                     <div class="col-md-6 col-sm-12">
                         <div id="alamat">
                             <h5>Alamat</h5>
-                            <p>{{$detail->alamat}}</p>
+                            <p>{{$pasien->alamat}}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div id="riwayat">
                             <h5>Riwayat Penyakit</h5>
-                            <p>{{ ($detail->riwayat_penyakit !== NULL) ? $detail->riwayat_penyakit : '-'}}</p>
+                            <p>{{ ($pasien->riwayat_penyakit !== NULL) ? $detail->riwayat_penyakit : '-'}}</p>
                         </div>
                     </div>
                 </div>
@@ -93,10 +93,10 @@
                                         <p>Jenis Vaksin <span class="ms-4">: {{$v->nama_vaksin}}</span></p>
                                         <p>Tanggal Vaksin : {{ date("d-m-Y", strtotime($v->tgl_vaksin)) }}</p>
                                         <p>Status <span class="ms-5 ps-2">: {{($v->status === 2) ? 'Selesai' : 'Belum Selesai'}}</span></p>
-                                        <form action="{{ route('vaksinasi.delete.vaksinasi', ['nik' => $detail->nik]) }}" method="post" onsubmit="return confirm('Yakin mau dihapus?')">
+                                        <form action="{{ route('vaksinasi.delete.vaksinasi') }}" method="post" onsubmit="return confirm('Yakin mau dihapus?')">
                                             @csrf
                                             @method('DELETE')
-                                            <input type="text" name="vaksin_ke" id="vaksin_ke" value="{{$v->vaksin_ke}}" class="visually-hidden">
+                                            <input type="text" name="id" id="id" value="{{ $v->id }}" class="visually-hidden">
                                             <button type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
                                     </div>
@@ -110,7 +110,7 @@
         </div>
     </div>
     <div class="col-md-4 col-sm-2 mb-auto">
-        <a href="{{ route('vaksinasi.edit', ['nik' => $detail->nik]) }}">
+        <a href="{{ route('vaksinasi.edit', ['nik' => $pasien->nik]) }}">
             <button class="btn btn-warning">Edit</button>
         </a>
     </div>
