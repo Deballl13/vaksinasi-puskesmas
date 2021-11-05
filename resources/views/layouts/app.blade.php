@@ -100,6 +100,8 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" defer></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js" defer></script>
 
+    @include('sweetalert::alert')    
+
     <!-- icon -->
     <script src="{{ asset('icon/js/all.js') }}"></script>
 

@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/daftar', [PendaftaranController::class, 'daftar'])->name('daftar');
-Route::post('/u/daftar', [PendaftaranController::class, 'user_daftar'])->name('user.daftar');
+Route::post('/u/daftar', [PendaftaranController::class, 'store_user_daftar'])->name('user.daftar');
 
-Auth::routes(['register' => true, 'reset' => false]);
+Auth::routes(['register' => false, 'reset' => false]);
 
 Route::middleware(['auth', 'revalidate'])->group(function () {
 
@@ -50,5 +50,5 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
 
     // hapus data
     Route::delete('/pasien', [VaksinasiController::class, 'delete_pasien'])->name('vaksinasi.delete.pasien');
-    Route::delete('/vaksinasi/{nik}', [VaksinasiController::class, 'delete_vaksinasi'])->name('vaksinasi.delete.vaksinasi');
+    Route::delete('/vaksinasi', [VaksinasiController::class, 'delete_vaksinasi'])->name('vaksinasi.delete.vaksinasi');
 });

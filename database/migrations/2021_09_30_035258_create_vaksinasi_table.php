@@ -14,6 +14,7 @@ class CreateVaksinasiTable extends Migration
     public function up()
     {
         Schema::create('vaksinasi', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger("nik");
             $table->unsignedBigInteger("id_vaksin")->nullable();
             $table->date("tgl_vaksin");

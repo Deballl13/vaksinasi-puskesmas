@@ -43,7 +43,7 @@
                     </td>
                     <td>{{$v->email}}</td>
                     <td class="text-center">
-                        <form action="{{ route('vaksinasi.delete.pasien') }}" method="post" onsubmit="return confirm('Yakin mau dihapus?')">
+                        <form id="form-delete" action="{{ route('vaksinasi.delete.pasien') }}" method="post" data-route="{{ route('vaksinasi.delete.pasien') }}" onsubmit="return confirm('Yakin mau dihapus?')">
                             @csrf
                             @method('DELETE')
 
@@ -65,5 +65,32 @@
     $(document).ready(function() {
         $('#example').DataTable();
     });
+</script>
+
+<!-- <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script> -->
+<script>
+    // function onHapus(){
+    //     $('#form-delete').on('submit', function (event) {
+    //         event.preventDefault();
+    //         const url = $(this).attr('action');
+    //         Swal.fire({
+    //             title: 'Kamu yakin?',
+    //             text: "Klik iya untuk melanjutkan   ",
+    //             icon: 'warning',
+    //             showCancelButton: true,
+    //             confirmButtonColor: '#3085d6',
+    //             cancelButtonColor: '#d33',
+    //             confirmButtonText: 'Iya',
+    //             cancelButtonText: 'Tidak'
+    //             }).then((result) => {
+    //             if (result.isConfirmed) {
+    //                 window.location.href = url;
+    //                 return true;
+    //             }
+    //         });
+    //     });
+
+    //     return false;
+    // }
 </script>
 @endsection

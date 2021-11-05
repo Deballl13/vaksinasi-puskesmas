@@ -12,11 +12,13 @@
 
 @component('mail::panel')
 <pre style="margin-top: -5px; margin-bottom: -5px;">
-Nik                 : {{$nik}} 
-Nama             : {{$nama}}
-Jenis Kelamin : {{$jenis_kelamin}}
-No. Hp           : {{$no_hp}} 
-Alamat           : {{$alamat}} 
+Nik                    : {{$nik}} 
+Nama                : {{$nama}}
+Jenis Kelamin    : {{$jenis_kelamin}}
+No. Hp              : {{$no_hp}} 
+Alamat              : {{$alamat}}
+Vaksinasi ke      : {{$vaksin_ke}} 
+Tanggal Vaksin  : {{$tgl_vaksin}}
 </pre>
 @endcomponent
 

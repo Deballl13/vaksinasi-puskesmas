@@ -41,7 +41,7 @@
             </div>
 
             <div class="card-body">
-                <h5>{{$pasien_vaksinasi}}</h5>
+                <h5>{{$jumlah_pasien_vaksinasi}}</h5>
             </div>
         </div>
     </div>
