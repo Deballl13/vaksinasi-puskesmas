@@ -18,7 +18,7 @@ class NotifPendaftaranVaksin extends Mailable
      *
      * @return void
      */
-    public function __construct($status, $pasien)
+    public function __construct($status, $pasien, $vaksinasi)
     {
         $this->nik = $pasien->nik;
         $this->nama = $pasien->nama_pasien;
@@ -26,6 +26,8 @@ class NotifPendaftaranVaksin extends Mailable
         $this->no_hp = $pasien->no_hp;
         $this->alamat = $pasien->alamat;
         $this->status = $status;
+        $this->vaksin_ke = $vaksinasi->vaksin_ke;
+        $this->tgl_vaksin = date("d-m-Y", strtotime($vaksinasi->tgl_vaksin));
     }
 
     /**
@@ -50,13 +52,16 @@ class NotifPendaftaranVaksin extends Mailable
         }
 
         return $this->markdown('emails.pendaftaran')
+                    ->subject("Puskesmas X Koto II")
                     ->with([
                         'nama' => $this->nama,
                         'nik' => $this->nik,
                         'jenis_kelamin' => $this->jenis_kelamin,
                         'no_hp' => $this->no_hp,
                         'alamat' => $this->alamat,
-                        'status' => $this->status
+                        'status' => $this->status,
+                        'vaksin_ke' => $this->vaksin_ke,
+                        'tgl_vaksin' => $this->tgl_vaksin
                     ]);
     }
 }

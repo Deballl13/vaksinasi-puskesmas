@@ -33,10 +33,15 @@ class HomeController extends Controller
         $stok = Vaksin::sum('stok');
 
         $pasien_vaksinasi = Pasien::join("vaksinasi", "pasien.nik", "=", "vaksinasi.nik")
-                            ->whereNull('vaksinasi.status')
-                            ->orWhere('vaksinasi.status', 2)
-                            ->count();
+                             ->where('vaksinasi.status', 2)
+                             ->groupBy('pasien.nik')
+                             ->get();
+                             
+        $jumlah_pasien_vaksinasi=0;
+        foreach ($pasien_vaksinasi as $p) {
+            $jumlah_pasien_vaksinasi += 1;
+        }
         
-        return view('home', compact('pasien', 'stok', 'pasien_vaksinasi'));
+        return view('home', compact('pasien', 'stok', 'jumlah_pasien_vaksinasi'));
     }
 }

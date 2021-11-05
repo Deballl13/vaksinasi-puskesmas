@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/daftar', [PendaftaranController::class, 'daftar'])->name('daftar');
-Route::post('/u/daftar', [PendaftaranController::class, 'store_daftar'])->name('user.daftar');
+Route::post('/u/daftar', [PendaftaranController::class, 'store_user_daftar'])->name('user.daftar');
 
 Auth::routes(['register' => false, 'reset' => false]);
 

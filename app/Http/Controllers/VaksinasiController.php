@@ -14,12 +14,12 @@ class VaksinasiController extends Controller
 {
     public function index()
     {
-        $vaksinasi = Vaksinasi::rightJoin("pasien", "pasien.nik", "=", "vaksinasi.nik")
-                                ->whereNull('vaksinasi.status')
-                                ->orWhere('vaksinasi.status', 2)
-                                ->orderBy('pasien.nama_pasien')
-                                ->distinct()
-                                ->get();
+        $vaksinasi = Pasien::join("vaksinasi", "pasien.nik", "=", "vaksinasi.nik")
+                             ->where('vaksinasi.status', 2)
+                             ->groupBy('pasien.nik')
+                             ->orderBy('pasien.nama_pasien')
+                             ->get();
+
         return view("vaksinasi.vaksinasi", compact('vaksinasi'));
     }
 
@@ -61,30 +61,32 @@ class VaksinasiController extends Controller
         $pasien = Pasien::find($request->nik);
         $pasien->nik = htmlspecialchars(trim($request->nik));
         $pasien->nama_pasien = ucwords(htmlspecialchars(trim($request->nama_pasien)));
-        $pasien->tgl_lahir = htmlspecialchars($request->tgl_lahir);
-        $pasien->jenis_kelamin = htmlspecialchars($request->jenis_kelamin);
+        $pasien->tgl_lahir = htmlspecialchars(trim($request->tgl_lahir));
+        $pasien->jenis_kelamin = htmlspecialchars(trim($request->jenis_kelamin));
         $pasien->no_hp = htmlspecialchars(trim($request->no_hp));
         $pasien->email = isset($request->email) ? htmlspecialchars(trim($request->email)) : NULL;
         $pasien->alamat = htmlspecialchars(trim($request->alamat));
         $pasien->riwayat_penyakit = isset($request->riwayat_penyakit) ? htmlspecialchars(trim($request->riwayat_penyakit)) : NULL;
         $pasien->save();
 
-        return redirect()->route('vaksinasi.detail', ['nik' => $pasien->nik])->with('Data berhasil diubah');
+        return redirect()->route('vaksinasi.detail', ['nik' => $pasien->nik])->with('success', 'Data berhasil diubah');
     }
 
     public function delete_pasien(Request $request)
     {
         $pasien = Pasien::find($request->nik);
         $pasien->delete();
+        // dd($request);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'data pasien berhasil dihapus');
     }
 
     public function delete_vaksinasi(Request $request)
     {
         $vaksinasi = Vaksinasi::find($request->id);
         $vaksinasi->delete();
+        // dd($request);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'data vaksinasi berhasil dihapus');
     }
 }

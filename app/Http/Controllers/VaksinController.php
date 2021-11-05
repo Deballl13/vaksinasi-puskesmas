@@ -17,7 +17,7 @@ class VaksinController extends Controller
     public function detail()
     {
         $detail_vaksin = Detail_Vaksin::join("vaksin", "vaksin.id", "=", "detail_vaksin.id_vaksin")
-            ->get();
+                                        ->get();
         return view("vaksin.detail_vaksin", compact('detail_vaksin'));
     }
 
@@ -30,21 +30,19 @@ class VaksinController extends Controller
     public function store_stok(Request $request)
     {
         $detail_vaksin = new Detail_Vaksin();
-        $detail_vaksin->id_vaksin = trim($request->id_vaksin);
-        $detail_vaksin->sumber_vaksin = $request->sumber_vaksin;
-        $detail_vaksin->jumlah = (int)$request->jumlah;
-        $detail_vaksin->tanggal = $request->tanggal;
+        $detail_vaksin->id_vaksin = htmlspecialchars(trim($request->id_vaksin));
+        $detail_vaksin->sumber_vaksin = htmlspecialchars(trim($request->sumber_vaksin));
+        $detail_vaksin->jumlah = htmlspecialchars(trim(intval($request->jumlah)));
+        $detail_vaksin->tanggal = htmlspecialchars(trim($request->tanggal));
         $detail_vaksin->save();
 
         $vaksin = Vaksin::find($request->id_vaksin);
 
-        $stok = $vaksin->stok + $request->jumlah;
-
-        $vaksin->stok = $stok;
+        $vaksin->stok += htmlspecialchars(trim($request->jumlah));
         $vaksin->save();
 
         $vaksin = Vaksin::get();
-        return redirect()->route('vaksin.detail');
+        return redirect()->route('vaksin.detail')->with('success', 'stok berhasil ditambah');
     }
 
     public function tambah_jenis()
@@ -59,8 +57,9 @@ class VaksinController extends Controller
             $vaksin->nama_vaksin = ucwords(htmlspecialchars(trim($request->nama_vaksin)));;
             $vaksin->stok = 0;
             $vaksin->save();
+            return redirect()->route('vaksin')->with('success', 'jenis vaksin berhasil ditambah');
         }
 
-        return redirect()->route('vaksin');
+        return redirect()->route('vaksin')->with('failed', 'jenis vaksin sudah terdaftar');
     }
 }
