@@ -90,6 +90,9 @@
                 @yield('content')
             </div>
         </main>
+        <footer>
+            <p class="text-center">&copy 2021 Build by Kelompok 2</p>
+        </footer>
     </div>
 
     <!-- bootstrap -->
