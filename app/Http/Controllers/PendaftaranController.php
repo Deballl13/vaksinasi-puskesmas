@@ -82,7 +82,7 @@ class PendaftaranController extends Controller
             $vaksinasi->status = 0;
             $vaksinasi->save();
 
-            return redirect('/daftar')->with('success', 'Pendaftaran berhasil ditambah');
+            return redirect('/pendaftaran/d/'.$request->nik)->with('success', 'Pendaftaran berhasil ditambah');
         }        
         // dd($cek_pendaftaran !== null);
         if($cek_pendaftaran !== null){
