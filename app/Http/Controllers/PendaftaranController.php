@@ -9,8 +9,6 @@ use App\Models\Vaksin;
 use App\Models\Vaksinasi;
 use Illuminate\Support\Facades\Mail;
 
-use function PHPUnit\Framework\isEmpty;
-
 class PendaftaranController extends Controller
 {
     public function index(){
@@ -42,8 +40,7 @@ class PendaftaranController extends Controller
     public function store_daftar(Request $request){
         // cek data vaksinasi 
         $cek_vaksinasi = Vaksinasi::where('nik', $request->nik)
-                                    ->where('vaksin_ke', $request->vaksin_ke)
-                                    ->orWhere('vaksin_ke', '>', $request->vaksin_ke)
+                                    ->orderBy('vaksin_ke', 'desc')
                                     ->first();
 
         // cek status pendaftaran sebelumnya
@@ -53,7 +50,7 @@ class PendaftaranController extends Controller
                                       ->first();
                                       
         // jika data vaksinasi tidak ada dan vaksinasi sebelumnya sudah selesai
-        if($cek_vaksinasi === null && $cek_pendaftaran === null){
+        if($cek_pendaftaran === null && ($cek_vaksinasi === null || ($cek_vaksinasi->vaksin_ke !== intval($request->vaksin_ke) && $cek_vaksinasi->vaksin_ke < intval($request->vaksin_ke)))){
             // jika data pasien belum terdaftar
             if(!Pasien::find($request->nik)){
                 $pasien = new Pasien();
@@ -85,23 +82,22 @@ class PendaftaranController extends Controller
             $vaksinasi->status = 0;
             $vaksinasi->save();
 
-            return redirect('/pendaftaran/d/'.$request->nik)->with('success', 'Pendaftaran berhasil ditambah');
+            return redirect('/daftar')->with('success', 'Pendaftaran berhasil ditambah');
         }        
-
-        if($cek_vaksinasi !== null){
-            return redirect('/pendaftaran')->with('failed', 'vaksinasi '.$request->vaksin_ke.' anda sudah selesai');
-        }
-        else if($cek_pendaftaran !== null){
+        // dd($cek_pendaftaran !== null);
+        if($cek_pendaftaran !== null){
             return redirect('/pendaftaran')->with('failed', 'vaksinasi sebelumnya belum selesai');
+        }
+        else if($cek_vaksinasi->vaksin_ke === intval($request->vaksin_ke) || $cek_vaksinasi->vaksin_ke > intval($request->vaksin_ke)){
+            return redirect('/pendaftaran')->with('failed', 'vaksinasi '.$request->vaksin_ke.' anda sudah selesai');
         }
     }
 
     public function store_user_daftar(Request $request){
         // cek data vaksinasi 
         $cek_vaksinasi = Vaksinasi::where('nik', $request->nik)
-                                    ->where('vaksin_ke', $request->vaksin_ke)
-                                    ->orWhere('vaksin_ke', '>', $request->vaksin_ke)
-                                    ->get();
+                                    ->orderBy('vaksin_ke', 'desc')
+                                    ->first();
 
         // cek status pendaftaran sebelumnya
         $cek_pendaftaran = Vaksinasi::where('nik', $request->nik)
@@ -110,7 +106,7 @@ class PendaftaranController extends Controller
                                       ->first();
                                       
         // jika data vaksinasi tidak ada dan vaksinasi sebelumnya sudah selesai
-        if($cek_vaksinasi === null && $cek_pendaftaran === null){
+        if($cek_pendaftaran === null && ($cek_vaksinasi === null || ($cek_vaksinasi->vaksin_ke !== intval($request->vaksin_ke) && $cek_vaksinasi->vaksin_ke < intval($request->vaksin_ke)))){
             // jika data pasien belum terdaftar
             if(!Pasien::find($request->nik)){
                 $pasien = new Pasien();
@@ -142,14 +138,14 @@ class PendaftaranController extends Controller
             $vaksinasi->status = 0;
             $vaksinasi->save();
 
-            return redirect('/daftar'.$request->nik)->with('success', 'Pendaftaran berhasil berhasil ditambah');
+            return redirect('/daftar')->with('success', 'Pendaftaran berhasil ditambah');
         }        
-
-        if($cek_vaksinasi === null){
-            return redirect('/daftar')->with('failed', 'vaksinasi' + $request->vaksin_ke + ' anda sudah selesai');
-        }
-        else if($cek_pendaftaran !== null){
+        // dd($cek_pendaftaran !== null);
+        if($cek_pendaftaran !== null){
             return redirect('/daftar')->with('failed', 'vaksinasi sebelumnya belum selesai');
+        }
+        else if($cek_vaksinasi->vaksin_ke === intval($request->vaksin_ke) || $cek_vaksinasi->vaksin_ke > intval($request->vaksin_ke)){
+            return redirect('/daftar')->with('failed', 'vaksinasi '. $request->vaksin_ke .' anda sudah selesai');
         }
     }
 
@@ -177,9 +173,10 @@ class PendaftaranController extends Controller
                 $vaksinasi->save();
 
                 $vaksin = Vaksin::find($request->id_vaksin);
-                $vaksin->stok =- 1;
+                $vaksin->stok -= 1;
                 $vaksin->save();
-                return redirect()->route('pendaftaran.detail', ['nik' => $nik])->with('success', 'vaksinasi '.$vaksinasi->vaksin_ke.' telah selesai');
+
+                return redirect()->route('pendaftaran')->with('success', 'vaksinasi '.$vaksinasi->vaksin_ke.' telah selesai');
                 break;
             
             case 3:
