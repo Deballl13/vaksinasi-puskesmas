@@ -74,7 +74,7 @@
                     <div class="col-md-6 col-sm-12">
                         <div id="riwayat">
                             <h5>Riwayat Penyakit</h5>
-                            <p>{{ ($pasien->riwayat_penyakit !== NULL) ? $detail->riwayat_penyakit : '-'}}</p>
+                            <p>{{ ($pasien->riwayat_penyakit !== NULL) ? $pasien->riwayat_penyakit : '-'}}</p>
                         </div>
                     </div>
                 </div>
