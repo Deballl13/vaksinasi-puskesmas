@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2021 at 06:24 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Dec 23, 2021 at 04:11 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +48,8 @@ INSERT INTO `detail_vaksin` (`id`, `id_vaksin`, `sumber_vaksin`, `jumlah`, `tang
 (4, 6, 'RS. M. Jamil', 10, '2021-11-01', '2021-11-01 01:42:22', '2021-11-01 01:42:22'),
 (8, 1, 'RS. M. Jamil', 3, '2021-11-11', '2021-11-05 08:29:11', '2021-11-05 08:29:11'),
 (9, 1, 'Kemenkes', 3, '2021-11-03', '2021-11-05 08:34:03', '2021-11-05 08:34:03'),
-(10, 1, 'Kemenkes', 10, '2021-11-03', '2021-11-05 08:34:25', '2021-11-05 08:34:25');
+(10, 1, 'Kemenkes', 10, '2021-11-03', '2021-11-05 08:34:25', '2021-11-05 08:34:25'),
+(11, 1, 'Kemenkes', 30, '2021-11-03', '2021-11-08 00:02:56', '2021-11-08 00:02:56');
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,9 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`nik`, `nama_pasien`, `tgl_lahir`, `jenis_kelamin`, `no_hp`, `email`, `alamat`, `riwayat_penyakit`, `created_at`, `updated_at`) VALUES
-(3243243245443252, 'Dhiya Nabila Denta', '2000-12-03', 'P', '082131231231', 'didi@gmail.com', 'alamat didi', NULL, '2021-11-01 00:48:05', '2021-11-01 03:10:13');
+(1942991721021921, 'Mila Gustia', '2001-05-25', 'P', '082131231231', 'milagustia@gmail.com', 'alamat mila', NULL, '2021-12-05 17:33:03', '2021-12-05 17:33:03'),
+(3243243245443252, 'Dhiya Nabila Denta', '2000-12-03', 'P', '082131231231', 'didi@gmail.com', 'alamat didi', NULL, '2021-11-01 00:48:05', '2021-11-01 03:10:13'),
+(4234341299213123, 'Untung Jamari', '2000-02-01', 'L', '081231231231', 'ari@gmail.com', 'alamat ari', NULL, '2021-12-05 20:59:33', '2021-12-05 21:09:15');
 
 -- --------------------------------------------------------
 
@@ -192,9 +195,9 @@ CREATE TABLE `vaksin` (
 --
 
 INSERT INTO `vaksin` (`id`, `nama_vaksin`, `stok`, `created_at`, `updated_at`) VALUES
-(1, 'Sinovac', -1, '2021-11-01 01:20:54', '2021-11-05 09:30:16'),
-(2, 'Moderna', 9, '2021-11-01 01:21:00', '2021-11-01 01:43:41'),
-(5, 'Pfizer', 10, '2021-11-01 01:41:19', '2021-11-01 01:42:11'),
+(1, 'Sinovac', 28, '2021-11-01 01:20:54', '2021-12-05 17:53:06'),
+(2, 'Moderna', 8, '2021-11-01 01:21:00', '2021-12-05 17:50:00'),
+(5, 'Pfizer', 9, '2021-11-01 01:41:19', '2021-12-05 21:15:11'),
 (6, 'Astrazeneca', 10, '2021-11-01 01:41:25', '2021-11-01 01:42:22');
 
 -- --------------------------------------------------------
@@ -220,7 +223,9 @@ CREATE TABLE `vaksinasi` (
 
 INSERT INTO `vaksinasi` (`id`, `nik`, `id_vaksin`, `tgl_vaksin`, `vaksin_ke`, `status`, `created_at`, `updated_at`) VALUES
 (1, 3243243245443252, 2, '2021-11-06', 1, 2, '2021-11-01 00:48:06', '2021-11-01 01:43:41'),
-(6, 3243243245443252, 1, '2021-11-10', 2, 2, '2021-11-05 09:10:57', '2021-11-05 09:30:16');
+(6, 3243243245443252, 1, '2021-11-10', 2, 2, '2021-11-05 09:10:57', '2021-11-05 09:30:16'),
+(7, 1942991721021921, 1, '2021-12-09', 2, 2, '2021-12-05 17:33:03', '2021-12-05 17:53:06'),
+(9, 4234341299213123, 5, '2021-12-10', 1, 2, '2021-12-05 20:59:33', '2021-12-05 21:15:11');
 
 --
 -- Indexes for dumped tables
@@ -296,7 +301,7 @@ ALTER TABLE `vaksinasi`
 -- AUTO_INCREMENT for table `detail_vaksin`
 --
 ALTER TABLE `detail_vaksin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -326,13 +331,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vaksin`
 --
 ALTER TABLE `vaksin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `vaksinasi`
 --
 ALTER TABLE `vaksinasi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
